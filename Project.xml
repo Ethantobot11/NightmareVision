@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday n Fnightfunkin" file="Friday n Fnightfunkin" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.7" company="ShadowMario" />
+	<app title="Friday n Fnightfunkin" file="Friday n Fnightfunkin" packageName="com.nightvision.psychengine" package="com.nightvsion.psychengine" main="Main" version="0.2.7" company="ShadowMario" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -26,16 +26,65 @@
 	<!--Desktop-specific-->
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
-	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+<!--Mobile-specific-->
+	<window if="mobile" orientation="landscape" fullscreen="true" resizable="false" allow-shaders="true"
+		require-shaders="true" allow-high-dpi="true" />
 
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
-	<!-- _____________________________ Path Settings ____________________________ -->
+<!-- _____________________________ Path Settings ____________________________ -->
+
+	<set name="BUILD_DIR" value="export/debug" if="debug" />
+	<set name="BUILD_DIR" value="export/release" unless="debug" />
+	<set name="BUILD_DIR" value="export/32bit" if="32bits" />
 
 	<classpath name="source" />
 
+<!-- __________________________ Game Assets & Etc. __________________________ -->
+
+	<!-- Preload Assets -->
+	<define name="PRELOAD_ALL" unless="web" />
+	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL" />
+
+	<assets path="assets/fonts" />
+	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web" />
+	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web" />
+	<section if="TITLE_SCREEN_EASTER_EGG">
+		<assets path="assets/secrets" rename="assets" exclude="*.ogg" if="web" />
+		<assets path="assets/secrets" rename="assets" exclude="*.mp3" unless="web" />
+	</section>
+
+	<!-- <define name="CHECK_FOR_UPDATES" unless="LOCAL" /> -->
+
+	<!-- Week Assets -->
+	<library name="videos" preload="true" />
+	<section if="PRELOAD_ALL">
+		<library name="songs" preload="true" />
+		<library name="shared" preload="true" />
+		<library name="week_assets" preload="true" />
+	</section>
+	
+	<section if="NO_PRELOAD_ALL">
+		<library name="songs" preload="false" />
+		<library name="shared" preload="false" />
+		<library name="week_assets" preload="false" />
+	</section>
+
+	<assets path="assets/videos" library="videos" if="VIDEOS_ALLOWED" />
+	<assets path="assets/songs" library="songs" exclude="*.ogg" if="web" />
+	<assets path="assets/songs" library="songs" exclude="*.mp3" unless="web" />
+	<assets path="assets/shared" library="shared" exclude="*.ogg" if="web" />
+	<assets path="assets/shared" library="shared" exclude="*.mp3" unless="web" />
+	<assets path="assets/week_assets" library="week_assets" rename="assets" exclude="*.ogg" if="web" />
+	<assets path="assets/week_assets" library="week_assets" rename="assets" exclude="*.mp3"
+		unless="web" />
+	
+	<section if="MODS_ALLOWED">
+		<assets path='example_mods' rename='mods' embed='false' />
+	</section>
+	<assets path='art/readme.txt' rename='do NOT readme.txt' unless="mobile" />
+		
 	<!--Fixes hxvlc using global rather than local. you will need to use hmm/hxpkg to compile this project though-->
 	<setenv name="HAXEPATH" value="./"/>
 
@@ -128,15 +177,51 @@
 
 	<!--Remove the legacy health system-->
 	<haxedef name="FLX_NO_HEALTH" />
-
-	<!--Disable the Flixel core focus lost screen-->
+		<!--Disable the Flixel core focus lost screen-->
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
+
+	<!-- Show debug traces for hxCodec -->
+	<haxedef name="HXC_DEBUG_TRACE" if="debug" />
 
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
 
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
+
+	<!--Used for Crash handler-->
+	<haxedef name="HXCPP_CHECK_POINTER" />
+	<haxedef name="HXCPP_STACK_LINE" />
+	<haxedef name="HXCPP_STACK_TRACE" />
+	<haxedef name="HXCPP_CATCH_SEGV" />
+	<haxedef name="HXCPP_DEBUG_LINK" />
+
+	<!-- Do whatever you want I'm tired uninstall and install everytime -->
+	<certificate path="key.keystore" password="psychonline" alias="psychonlineport" alias-password="psychonline" if="android" unless="debug" />
+
+	<!-- Category Type for Apple Systems -->
+	<config:ios category_type="public.app-category.music-games" />
+	<config:mac category_type="public.app-category.music-games" />
+
+	<!-- Allow Access to Engine Files in Mobile -->
+	<haxedef name="SHARE_MOBILE_FILES" if="mobile" />
+
+	<haxedef name="message.reporting" value="pretty" />
+	<haxedef name='no-deprecation-warnings' />
+
+	<!--Avoid memory leaks with for loops in HScript-->
+	<haxedef name="loop_unroll_max_cost" value="25" />
+	<haxedef name="DISABLED_MACRO_SUPERLATIVE" if="android" />
+
+	<!--Macro fixes-->
+	<haxeflag name="--macro" value="allowPackage('flash')" />
+	<haxeflag name="--macro" value="include('my.pack')" />
+
+	<section if='debugmon'>
+		<haxeflag name="--macro" value="addGlobalMetadata('online', '@:build(online.backend.MonitorMacro.build())')" />
+		<haxeflag name="--macro" value="addGlobalMetadata('states', '@:build(online.backend.MonitorMacro.build())')" />
+		<haxeflag name="--macro" value="addGlobalMetadata('flixel', '@:build(online.backend.MonitorMacro.build())')" />
+		<haxeflag name="--macro" value="addGlobalMetadata('backend', '@:build(online.backend.MonitorMacro.build())')" />
 
 	<!--For haxe 4.3.0 and newer cleaner error reporting-->
 	<haxedef name="message.reporting" value="pretty" />
@@ -160,6 +245,7 @@
 
 	<!--Disable the Flixel sound management code-->
 	<!--<haxedef name="FLX_NO_SOUND_SYSTEM" />-->
+	</section>
 
 	<!-- _________________________________ Custom _______________________________ -->
 
