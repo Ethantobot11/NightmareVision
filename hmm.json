@@ -109,11 +109,6 @@
       "url": "https://github.com/Snirozu/grig.audio"
     },
     {
-      "name": "tink_core",
-      "type": "haxelib",
-      "version": "2.1.1"
-    },
-    {
       "name": "hxvlc",
       "type": "git",
       "dir": null,
