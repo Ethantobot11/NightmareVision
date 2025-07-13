@@ -23,7 +23,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  buildLinux:
+  buildAndroid:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -53,14 +53,14 @@ jobs:
           haxe compile.hxml
           cd ../..
       - name: Compile
-        run: haxelib run lime build Project.xml linux -D ${{ inputs.buildFlags }}
+        run: haxelib run lime build Project.xml android -D -ARMV7 ${{ inputs.buildFlags }}
       - name: Publish Artifact
         uses: actions/upload-artifact@main
         with:
-          name: linuxBuild
-          path: 'export/release/linux/bin' 
-  buildWindows:
-    runs-on: windows-latest
+          name: androidBuild
+          path: 'export/release/android/apk' 
+  buildIOS:
+    runs-on: macos-15
     
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -88,12 +88,12 @@ jobs:
           haxe compile.hxml
           cd ../..
       - name: Compile
-        run: haxelib run lime build windows -D ${{ inputs.buildFlags }}
+        run: haxelib run lime build ios -D -nosign ${{ inputs.buildFlags }}
       - name: Publish Artifact
         uses: actions/upload-artifact@main
         with:
-          name: windowsBuild
-          path: export/release/windows/bin
+          name: iosBuild
+          path: export/release/IOS/ipa
   buildMacIntel:
     runs-on: macos-15
 
