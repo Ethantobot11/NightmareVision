@@ -78,7 +78,6 @@ jobs:
           haxelib run hxpkg setup --global
           hxpkg install
           haxelib list
-        shell: cmd
       - name: Compile hxcpp
         run: |
           cd C:/haxelib/hxcpp/git/tools/run
