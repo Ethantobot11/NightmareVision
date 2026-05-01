@@ -3,6 +3,10 @@
         "profile": "default",
         "pkgs": [
             {
+                "name": "compiletime",
+                "version": "2.8.0"
+            },
+            {
                 "name": "actuate",
                 "link": "https://github.com/ArkoseLabsOfficial/mobile-controls-dev",
                 "branch": "main"
