@@ -2,7 +2,7 @@
 <project>
     <!-- _________________________ Application Settings _________________________ -->
 
-    <app title="Friday Night Funkin" file="Friday Night Funkin" packageName="com.nmvTeam.nightmareEngine" package="com.nmvTeam.nightmareEngine" main="Main" version="0.2.7" company="nmvTeam" />
+    <app title="VS Imposotr : Legacy" file="VSImpostor" packageName="com.cloewfoe.vsimpostorlegacy" package="com.cloewfoe.vsimpostorlegacy" main="Main" version="1.0.3" company="Cloewfeo" />
 
     <!--Switch Export with Unique ApplicationID and Icon-->
     <set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -37,7 +37,7 @@
     <!-- _____________________________ Engine Config Settings ____________________________ -->
 
     <!--ENGINE CUSTOMIZATION-->
-    <define name="MODS_ALLOWED" if="desktop" />
+    <define name="MODS_ALLOWED" if="desktop || mobile" />
     <define name="VIDEOS_ALLOWED" if="cpp" />
     <define name="DISCORD_ALLOWED" if="cpp"/>
 
@@ -145,6 +145,13 @@
 
     <!--For haxe 4.3.0 and newer cleaner error reporting-->
     <haxedef name="message.reporting" value="pretty" />
+
+	<!-- Do whatever you want I'm tired uninstall and install everytime -->
+	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
+
+	<!-- Category Type for Apple Systems -->
+	<config:ios category_type="public.app-category.music-games" />
+	<config:mac category_type="public.app-category.music-games" />
 
     <!--For haxe 4.3.0 and newer disables warnings-->
     <haxedef name="no-deprecation-warnings"/>
