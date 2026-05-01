@@ -151,11 +151,10 @@ class Controls extends FlxActionSet
 	
 	public var gamepadsAdded:Array<Int> = [];
 	public var keyboardScheme = KeyboardScheme.None;
+    public var mobileControls:MobileControlManager;
 	
 	public var UI_UP(get, never):Bool;
-	
-	inline function get_UI_UP() return _ui_up.check();
-	
+    inline function get_UI_UP() return checkAction(_ui_up, "UP");
 	public var UI_LEFT(get, never):Bool;
 	
 	inline function get_UI_LEFT() return _ui_left.check();
@@ -169,8 +168,7 @@ class Controls extends FlxActionSet
 	inline function get_UI_DOWN() return _ui_down.check();
 	
 	public var UI_UP_P(get, never):Bool;
-	
-	inline function get_UI_UP_P() return _ui_upP.check();
+    inline function get_UI_UP_P() return checkAction(_ui_upP, "UP", "justPressed");
 	
 	public var UI_LEFT_P(get, never):Bool;
 	
@@ -181,8 +179,7 @@ class Controls extends FlxActionSet
 	inline function get_UI_RIGHT_P() return _ui_rightP.check();
 	
 	public var UI_DOWN_P(get, never):Bool;
-	
-	inline function get_UI_DOWN_P() return _ui_downP.check();
+    inline function get_UI_DOWN_P() return checkAction(_ui_downP, "DOWN", "justPressed");
 	
 	public var UI_UP_R(get, never):Bool;
 	
@@ -200,21 +197,18 @@ class Controls extends FlxActionSet
 	
 	inline function get_UI_DOWN_R() return _ui_downR.check();
 	
-	public var NOTE_UP(get, never):Bool;
-	
-	inline function get_NOTE_UP() return _note_up.check();
-	
-	public var NOTE_LEFT(get, never):Bool;
-	
-	inline function get_NOTE_LEFT() return _note_left.check();
-	
-	public var NOTE_RIGHT(get, never):Bool;
-	
-	inline function get_NOTE_RIGHT() return _note_right.check();
-	
-	public var NOTE_DOWN(get, never):Bool;
-	
-	inline function get_NOTE_DOWN() return _note_down.check();
+	// NOTE CONTROLS (Gameplay)
+    public var NOTE_UP(get, never):Bool;
+    inline function get_NOTE_UP() return checkAction(_note_up, "UP");
+
+    public var NOTE_LEFT(get, never):Bool;
+    inline function get_NOTE_LEFT() return checkAction(_note_left, "LEFT");
+
+    public var NOTE_RIGHT(get, never):Bool;
+    inline function get_NOTE_RIGHT() return checkAction(_note_right, "RIGHT");
+
+    public var NOTE_DOWN(get, never):Bool;
+    inline function get_NOTE_DOWN() return checkAction(_note_down, "DOWN");
 	
 	public var NOTE_UP_P(get, never):Bool;
 	
@@ -249,14 +243,13 @@ class Controls extends FlxActionSet
 	inline function get_NOTE_DOWN_R() return _note_downR.check();
 	
 	public var ACCEPT(get, never):Bool;
-	
-	inline function get_ACCEPT() return _accept.check();
-	
-	public var BACK(get, never):Bool;
-	
-	inline function get_BACK() return _back.check();
-	
-	public var PAUSE(get, never):Bool;
+    inline function get_ACCEPT() return checkAction(_accept, "A", "justPressed");
+
+    public var BACK(get, never):Bool;
+    inline function get_BACK() return checkAction(_back, "B", "justPressed");
+
+    public var PAUSE(get, never):Bool;
+    inline function get_PAUSE() return checkAction(_pause, "START", "justPressed");
 	
 	inline function get_PAUSE() return _pause.check();
 	
@@ -668,4 +661,21 @@ class Controls extends FlxActionSet
 	{
 		return input.device == GAMEPAD && (deviceID == FlxInputDeviceID.ALL || input.deviceID == deviceID);
 	}
+
+    public function setMobileManager(manager:MobileControlManager) {
+    this.mobileControls = manager;
+    }
+
+    private function checkAction(action:FlxActionDigital, mobileButton:String, ?state:String = "pressed"):Bool {
+    if (action.check()) return true;
+
+    if (mobileControls != null && mobileControls.mobilePad != null) {
+        return switch(state) {
+            case "justPressed": mobileControls.mobilePad.justPressed(mobileButton);
+            case "justReleased": mobileControls.mobilePad.justReleased(mobileButton);
+            default: mobileControls.mobilePad.pressed(mobileButton);
+        };
+    }
+    return false;
+    }
 }

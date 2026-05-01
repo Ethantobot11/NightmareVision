@@ -109,10 +109,10 @@ class MainMenuState extends MusicBeatState
 		
 		changeSelection();
 		
-		super.create();
-
         addMobilePad("LEFT_FULL", "A_B");
         addMobilePadCamera();
+        
+		super.create();
 		
 		scriptGroup.call('onCreate', []);
 	}
@@ -137,14 +137,10 @@ class MainMenuState extends MusicBeatState
 				FlxG.switchState(ModsState.new);
 			}
 			
-			if (controls.UI_UP_P || controls.UI_DOWN_P || mobileUp || mobileDown)
+			if (controls.UI_UP_P || controls.UI_DOWN_P)
 			{
 				FunkinSound.play(Paths.sound('scrollMenu'));
-                #if desktop
 				changeSelection(controls.UI_UP_P ? -1 : 1);
-                #else
-                changeSelection(mobileUp ? -1 : 1);
-                #end
 			}
 			
 			if (controls.BACK)
