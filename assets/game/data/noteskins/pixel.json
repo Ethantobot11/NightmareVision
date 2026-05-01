@@ -126,62 +126,86 @@
 		]
 	],
 	"noteSplashAnimations": [
-        {
-			"offsets": [
-				-2,
-				-2
-			],
-			"xmlName": "splash1",
-			"anim": "note0"
-		},
-        {
-			"offsets": [
-				-2,
-				-2
-			],
-			"xmlName": "splash1",
-			"anim": "note1"
-		},
-        {
-			"offsets": [
-				-2,
-				-2
-			],
-			"xmlName": "splash1",
-			"anim": "note2"
-		},
-        {
-			"offsets": [
-				-2,
-				-2
-			],
-			"xmlName": "splash1",
-			"anim": "note3"
-		},
-		{
-			"offsets": [
-				-2,
-				-2
-			],
-			"xmlName": "splash1",
-			"anim": "splash1"
-		},		
-        {
-			"offsets": [
-				-2,
-				-2
-			],
-			"xmlName": "splash2",
-			"anim": "splash2"
-		},
-        {
-			"offsets": [
-				-2,
-				-2
-			],
-			"xmlName": "splash2",
-			"anim": "splash3"
-		}
+		[
+            {
+                "offsets": [
+                    0,
+                    0
+                ],
+                "xmlName": "splash0",
+                "anim": "splash",
+                "fps": 18
+            },		
+            {
+                "offsets": [
+                    0,
+                    0
+                ],
+                "xmlName": "splash0",
+                "anim": "splash-1",
+                "fps": 18
+            }
+        ],
+        [
+            {
+                "offsets": [
+                    0,
+                    0
+                ],
+                "xmlName": "splash0",
+                "anim": "splash",
+                "fps": 18
+            },		
+            {
+                "offsets": [
+                    0,
+                    0
+                ],
+                "xmlName": "splash0",
+                "anim": "splash-1",
+                "fps": 18
+            }
+        ],
+        [
+            {
+                "offsets": [
+                    0,
+                    0
+                ],
+                "xmlName": "splash0",
+                "anim": "splash",
+                "fps": 18
+            },		
+            {
+                "offsets": [
+                    0,
+                    0
+                ],
+                "xmlName": "splash0",
+                "anim": "splash-1",
+                "fps": 18
+            }
+        ],
+        [
+            {
+                "offsets": [
+                    0,
+                    0
+                ],
+                "xmlName": "splash0",
+                "anim": "splash",
+                "fps": 18
+            },		
+            {
+                "offsets": [
+                    0,
+                    0
+                ],
+                "xmlName": "splash0",
+                "anim": "splash-1",
+                "fps": 18
+            }
+        ]
 	],
 	"noteAnimations": [
 		[
@@ -306,20 +330,19 @@
 			{
 				"anim": "start",
 				"xmlName": "start",
-				"offsets": [-160, 0],
+				"offsets": [0, 0],
 				"looping": false
 			},
 			{
 				"anim": "loop",
 				"xmlName": "loop",
-				"offsets": [-160, 0],
-				"looping": true,
-				"fps": 12
+				"offsets": [0, 0],
+				"looping": true
 			},
 			{
 				"anim": "end",
 				"xmlName": "end",
-				"offsets": [-160, 0],
+				"offsets": [0, 0],
 				"looping": false
 			}
 		],
@@ -327,20 +350,19 @@
 			{
 				"anim": "start",
 				"xmlName": "start",
-				"offsets": [-160, 0],
+				"offsets": [0, 0],
 				"looping": false
 			},
 			{
 				"anim": "loop",
 				"xmlName": "loop",
-				"offsets": [-160, 0],
-				"looping": true,
-				"fps": 12
+				"offsets": [0, 0],
+				"looping": true
 			},
 			{
 				"anim": "end",
 				"xmlName": "end",
-				"offsets": [-160, 0],
+				"offsets": [0, 0],
 				"looping": false
 			}
 		],
@@ -348,20 +370,19 @@
 			{
 				"anim": "start",
 				"xmlName": "start",
-				"offsets": [-160, 0],
+				"offsets": [0, 0],
 				"looping": false
 			},
 			{
 				"anim": "loop",
 				"xmlName": "loop",
-				"offsets": [-160, 0],
-				"looping": true,
-				"fps": 12
+				"offsets": [0, 0],
+				"looping": true
 			},
 			{
 				"anim": "end",
 				"xmlName": "end",
-				"offsets": [-160, 0],
+				"offsets": [0, 0],
 				"looping": false
 			}
 		],
@@ -369,20 +390,19 @@
 			{
 				"anim": "start",
 				"xmlName": "start",
-				"offsets": [-160, 0],
+				"offsets": [0, 0],
 				"looping": false
 			},
 			{
 				"anim": "loop",
 				"xmlName": "loop",
-				"offsets": [-160, 0],
-				"looping": true,
-				"fps": 12
+				"offsets": [0, 0],
+				"looping": true
 			},
 			{
 				"anim": "end",
 				"xmlName": "end",
-				"offsets": [-160, 0],
+				"offsets": [0, 0],
 				"looping": false
 			}
 		]

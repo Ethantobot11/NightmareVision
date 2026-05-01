@@ -110,12 +110,20 @@ class MainMenuState extends MusicBeatState
 		changeSelection();
 		
 		super.create();
+
+        addMobilePad("LEFT_FULL", "A_B");
+        addMobilePadCamera();
 		
 		scriptGroup.call('onCreate', []);
 	}
 	
 	override function update(elapsed:Float)
 	{
+        var mobileAccepted:Bool = mobilePadJustPressed(A);
+    
+        var mobileUp:Bool = mobilePadJustPressed(UP);
+        var mobileDown:Bool = mobilePadJustPressed(DOWN);
+
 		if (FlxG.sound.music != null && FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * elapsed;
@@ -129,10 +137,14 @@ class MainMenuState extends MusicBeatState
 				FlxG.switchState(ModsState.new);
 			}
 			
-			if (controls.UI_UP_P || controls.UI_DOWN_P)
+			if (controls.UI_UP_P || controls.UI_DOWN_P || mobileUp || mobileDown)
 			{
 				FunkinSound.play(Paths.sound('scrollMenu'));
+                #if desktop
 				changeSelection(controls.UI_UP_P ? -1 : 1);
+                #else
+                changeSelection(mobileUp ? -1 : 1);
+                #end
 			}
 			
 			if (controls.BACK)
@@ -144,7 +156,7 @@ class MainMenuState extends MusicBeatState
 			
 			scriptGroup.set('curSelected', curSelected);
 			
-			if (controls.ACCEPT)
+			if (controls.ACCEPT || mobileAccepted)
 			{
 				if (scriptGroup.call('onSelect', [optionShit[curSelected]]) != ScriptConstants.STOP_FUNC)
 				{

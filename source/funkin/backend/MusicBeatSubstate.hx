@@ -1,6 +1,8 @@
 package funkin.backend;
 
 import flixel.FlxSubState;
+import flixel.FlxBasic;
+import flixel.FlxG;
 import flixel.util.FlxDestroyUtil;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
@@ -8,11 +10,53 @@ import funkin.input.Controls;
 import funkin.data.*;
 import funkin.scripts.*;
 
+import mobile.backend.MobileControlManager;
+
 class MusicBeatSubstate extends FlxSubState
 {
+	// --- MOBILE PORT OVERRIDES START ---
+	public var mobileManager:MobileControlManager;
+
+	public function getMobilePadButton(name:String) {
+		return mobileManager?.mobilePad?.getButton(name);
+	}
+	public function mobilePadJustPressed(buttons:Dynamic):Bool {
+		return mobileManager?.mobilePad?.justPressed(buttons);
+	}
+	public function mobilePadPressed(buttons:Dynamic):Bool {
+		return mobileManager?.mobilePad?.pressed(buttons);
+	}
+	public function mobilePadJustReleased(buttons:Dynamic):Bool {
+		return mobileManager?.mobilePad?.justReleased(buttons);
+	}
+	public function mobilePadReleased(buttons:Dynamic):Bool {
+		return mobileManager?.mobilePad?.released(buttons);
+	}
+	public function addMobilePad(DPad:String, Action:String) {
+		mobileManager.addMobilePad(DPad, Action);
+	}
+	public function removeMobilePad() {
+		mobileManager.removeMobilePad();
+	}
+	public function addHitbox(?mode:String, ?hints:Bool):Void {
+		mobileManager.addHitbox(mode, hints);
+	}
+	public function removeHitbox() {
+		mobileManager.removeHitbox();
+	}
+	public function addHitboxCamera(defaultDrawTarget:Bool = false):Void {
+		mobileManager.addHitboxCamera(defaultDrawTarget);
+	}
+	public function addMobilePadCamera(defaultDrawTarget:Bool = false):Void {
+		mobileManager.addMobilePadCamera(defaultDrawTarget);
+	}
+	// --- MOBILE PORT OVERRIDES END ---
+
 	public function new()
 	{
 		super();
+		// Initialize the manager for the substate
+		mobileManager = new MobileControlManager(this);
 	}
 	
 	private var curSection:Int = 0;
@@ -71,7 +115,7 @@ class MusicBeatSubstate extends FlxSubState
 	
 	public function refreshZ(?group:FlxTypedGroup<FlxBasic>)
 	{
-		group ??= FlxG.state;
+		group ??= (subState != null ? cast subState : FlxG.state);
 		group.sort(SortUtil.sortByZ, flixel.util.FlxSort.ASCENDING);
 	}
 	
@@ -172,6 +216,11 @@ class MusicBeatSubstate extends FlxSubState
 		scriptGroup.call('onDestroy', []);
 		
 		scriptGroup = FlxDestroyUtil.destroy(scriptGroup);
+
+		// IMPORTANT: Clean up mobile controls when substate closes
+		if (mobileManager != null) {
+			mobileManager.destroy();
+		}
 		
 		super.destroy();
 	}

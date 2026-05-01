@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="pico.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="pico normal0000" x="0" y="0" width="174" height="253"/>
+	<SubTexture name="pico normal0001" x="0" y="0" width="174" height="253"/>
+	<SubTexture name="pico normal0002" x="0" y="0" width="174" height="253"/>
+	<SubTexture name="pico normal0003" x="0" y="0" width="174" height="253"/>
+	<SubTexture name="pico normal0004" x="0" y="0" width="174" height="253"/>
+	<SubTexture name="pico normal0005" x="0" y="0" width="174" height="253"/>
+	<SubTexture name="pico normal0006" x="0" y="0" width="174" height="253"/>
+	<SubTexture name="pico normal0007" x="0" y="0" width="174" height="253"/>
+	<SubTexture name="pico serious0000" x="0" y="255" width="174" height="253"/>
+	<SubTexture name="pico serious0001" x="0" y="255" width="174" height="253"/>
+	<SubTexture name="pico serious0002" x="0" y="255" width="174" height="253"/>
+	<SubTexture name="pico serious0003" x="0" y="255" width="174" height="253"/>
+	<SubTexture name="pico serious0004" x="0" y="255" width="174" height="253"/>
+	<SubTexture name="pico serious0005" x="0" y="255" width="174" height="253"/>
+	<SubTexture name="pico serious0006" x="0" y="255" width="174" height="253"/>
+	<SubTexture name="pico serious0007" x="0" y="255" width="174" height="253"/>
+</TextureAtlas>

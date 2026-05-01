@@ -12,6 +12,11 @@ import flixel.input.keyboard.FlxKey;
 
 import funkin.backend.DebugDisplay;
 
+#if android
+import android.content.Context;
+import android.os.Build;
+#end
+
 @:nullSafety(Strict)
 class Main extends Sprite
 {
@@ -45,6 +50,15 @@ class Main extends Sprite
 	{
 		super();
 		
+        #if mobile
+		#if android
+		MobileUtil.getPermissions();
+		MobileUtil.initDirectory();
+		#end
+		Sys.setCwd(MobileUtil.getAssetDirectory());
+		//Sys.setCwd(haxe.io.Path.addTrailingSlash(MobileUtil.getDirectory()));
+		MobileUtil.copyAssets();
+		#end
 		#if (CRASH_HANDLER && !debug)
 		funkin.backend.CrashHandler.init();
 		#end
@@ -71,6 +85,7 @@ class Main extends Sprite
 		#if DISABLE_TRACES
 		haxe.Log.trace = (v:Dynamic, ?infos:haxe.PosInfos) -> {}
 		#end
+        #if android FlxG.android.preventDefaultKeys = [BACK]; #end
 	}
 	
 	@:access(flixel.FlxCamera)

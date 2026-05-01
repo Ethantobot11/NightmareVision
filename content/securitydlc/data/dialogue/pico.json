@@ -1,0 +1,23 @@
+{
+    "name": "dialogue_pico",
+    "side": 2,
+    "asset": "pico",
+    "boxColor": "0xFF83EC5B",
+    "boxShadeColor": "0xFF0E965C", 
+    "icon": "pico",
+    "sound": "pico",
+    "animations": [
+        {
+            "anim": "serious",
+            "name": "pico serious",
+            "loop": false,
+            "offsets": [0,0] 
+        },
+        {
+            "anim": "normal",
+            "name": "pico normal",
+            "loop": false,
+            "offsets": [0,0] 
+        }
+    ]
+}

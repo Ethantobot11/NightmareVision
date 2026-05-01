@@ -13,74 +13,8 @@
 		},
 		{
 			"offsets": [
-				5,
-				-6
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "BF NOTE LEFT0"
-		},
-		{
-			"offsets": [
-				-20,
-				-51
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "BF NOTE DOWN0"
-		},
-		{
-			"offsets": [
-				-46,
-				27
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "BF NOTE UP0"
-		},
-		{
-			"offsets": [
-				-48,
-				-7
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT",
-			"indices": [],
-			"name": "BF NOTE RIGHT0"
-		},
-		{
-			"offsets": [
-				7,
-				19
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFTmiss",
-			"indices": [],
-			"name": "BF NOTE LEFT MISS"
-		},
-		{
-			"offsets": [
-				-15,
-				-19
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWNmiss",
-			"indices": [],
-			"name": "BF NOTE DOWN MISS"
-		},
-		{
-			"offsets": [
-				-46,
-				27
+				-21,
+				63
 			],
 			"loop": false,
 			"fps": 24,
@@ -90,8 +24,8 @@
 		},
 		{
 			"offsets": [
-				-44,
-				22
+				-46,
+				15
 			],
 			"loop": false,
 			"fps": 24,
@@ -101,88 +35,148 @@
 		},
 		{
 			"offsets": [
-				-3,
-				5
+				-2,
+				65
 			],
+			"flipY": false,
 			"loop": false,
 			"fps": 24,
 			"anim": "hey",
+			"flipX": false,
 			"indices": [],
-			"name": "BF HEY!!"
+			"name": "Hey"
 		},
 		{
 			"offsets": [
-				14,
-				18
+				-3,
+				64
 			],
+			"flipY": false,
 			"loop": false,
 			"fps": 24,
-			"anim": "hurt",
+			"anim": "singLEFT",
+			"flipX": false,
 			"indices": [],
-			"name": "BF hit"
+			"name": "Left"
 		},
 		{
 			"offsets": [
-				-4,
-				0
+				-3,
+				64
 			],
-			"loop": true,
+			"flipY": false,
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"flipX": false,
+			"indices": [],
+			"name": "Left Miss"
+		},
+		{
+			"offsets": [
+				-14,
+				63
+			],
+			"flipY": false,
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"flipX": false,
+			"indices": [],
+			"name": "Down"
+		},
+		{
+			"offsets": [
+				-14,
+				63
+			],
+			"flipY": false,
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"flipX": false,
+			"indices": [],
+			"name": "Down Miss"
+		},
+		{
+			"offsets": [
+				-2,
+				64
+			],
+			"flipY": false,
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"flipX": false,
+			"indices": [],
+			"name": "Up"
+		},
+		{
+			"offsets": [
+				-2,
+				64
+			],
+			"flipY": false,
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"flipX": false,
+			"indices": [],
+			"name": "Right"
+		},
+		{
+			"offsets": [
+				-2,
+				64
+			],
+			"flipY": false,
+			"loop": false,
 			"fps": 24,
 			"anim": "scared",
+			"flipX": false,
 			"indices": [],
-			"name": "BF idle shaking"
+			"name": "Scared"
 		},
 		{
+			"loop": true,
+			"flipY": false,
 			"offsets": [
-				-10,
-				-16
+				-2,
+				64
 			],
-			"loop": false,
+			"anim": "idle-scared",
 			"fps": 24,
-			"anim": "dodge",
-			"indices": [],
-			"name": "boyfriend dodge"
-		},
-		{
-			"offsets": [
-				294,
-				267
+			"name": "Scared",
+			"indices": [
+				6,
+				7,
+				8,
+				9
 			],
-			"loop": false,
-			"fps": 24,
-			"anim": "attack",
-			"indices": [],
-			"name": "boyfriend attack"
-		},
-		{
-			"offsets": [
-				-40,
-				-40
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "pre-attack",
-			"indices": [],
-			"name": "bf pre attack"
+			"flipX": false
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/BOYFRIEND",
 	"position": [
-		0,
-		350
+		-12,
+		342
 	],
+	"dance_every": 2,
+	"gameover_intial_sound": null,
+	"scalableOffsets": false,
+	"gameover_confirm_sound": null,
 	"healthicon": "bf",
+	"gameover_character": "bf-dead",
+	"vslice_sustains": false,
 	"flip_x": true,
-	"healthbar_colors": [
-		49,
-		176,
-		209
-	],
+	"healthbar_colour": -13520687,
 	"camera_position": [
 		0,
 		0
 	],
+	"gameover_loop_sound": null,
 	"sing_duration": 4,
-	"scale": 1
+	"scale": 1,
+	"_editor_isPlayer": true
 }

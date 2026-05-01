@@ -27,6 +27,24 @@ import funkin.api.DiscordClient;
 import hxvlc.flixel.*;
 #end
 
+#if mobile
+import mobile.*;
+import mobile.backend.*;
+import mobile.objects.*;
+#end
+//Android
+#if android
+import android.callback.CallBack as AndroidCallBack;
+import android.content.Context as AndroidContext;
+import android.widget.Toast as AndroidToast;
+import android.os.Environment as AndroidEnvironment;
+import android.Permissions as AndroidPermissions;
+import android.Settings as AndroidSettings;
+import android.Tools as AndroidTools;
+import android.os.Build.VERSION as AndroidVersion;
+import android.os.Build.VERSION_CODES as AndroidVersionCode;
+#end
+
 import Init;
 
 import funkin.Paths;
