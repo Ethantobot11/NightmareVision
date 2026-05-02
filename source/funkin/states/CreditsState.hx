@@ -180,6 +180,8 @@ class CreditsState extends MusicBeatState
 		
 		changeSelection();
 		super.create();
+
+        addMobilePad("UP_DOWN", "A_B");
 		
 		scriptGroup.call('onCreate');
 	}

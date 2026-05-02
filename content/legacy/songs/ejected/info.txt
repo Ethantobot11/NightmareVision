@@ -1,3 +1,0 @@
-Ejected
-Composer: Rareblin
-Charter: Thales

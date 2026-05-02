@@ -1,3 +1,0 @@
-changes camera modulo
-value 1: force
-value 2: beats

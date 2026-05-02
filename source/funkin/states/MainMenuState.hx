@@ -108,22 +108,22 @@ class MainMenuState extends MusicBeatState
 		add(verionDesc);
 		
 		changeSelection();
-        
+		
 		super.create();
-
-        addMobilePad("LEFT_FULL", "A_B");
-        addMobilePadCamera();
+		
+		addMobilePad("UP_DOWN", "A_B");
+		addMobilePadCamera();
 		
 		scriptGroup.call('onCreate', []);
 	}
 	
 	override function update(elapsed:Float)
 	{
-        var mobileAccepted:Bool = mobilePadJustPressed(A);
-    
-        var mobileUp:Bool = mobilePadJustPressed(UP);
-        var mobileDown:Bool = mobilePadJustPressed(DOWN);
-
+		var mobileAccepted:Bool = mobilePadJustPressed(A);
+		
+		var mobileUp:Bool = mobilePadJustPressed(UP);
+		var mobileDown:Bool = mobilePadJustPressed(DOWN);
+		
 		if (FlxG.sound.music != null && FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * elapsed;

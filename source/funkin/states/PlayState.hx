@@ -843,6 +843,10 @@ class PlayState extends MusicBeatState
 		
 		super.create();
 		
+		addMobilePad("NONE", "P");
+		addHitbox("Normal", true);
+		addMobilePadCamera();
+		
 		FunkinAssets.cache.clearUnusedMemory();
 		
 		refreshZ(stage);

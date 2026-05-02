@@ -25,36 +25,59 @@ class Util {
 	}
 
 	public static function setupMaps(folder:String, map:Dynamic, mode:ButtonsModes)
-	{
-		folder = folder.contains(':') ? folder.split(':')[1] : folder;
+    {
+    folder = folder.contains(':') ? folder.split(':')[1] : folder;
+    
+    // DEBUG: See where the game is actually looking
+    trace('Checking folder: ' + folder);
 
-		#if mobile_controls_file_support if (FileSystem.exists(folder)) #end
-		for (file in readDirectory(folder))
-		{
-			if (Path.extension(file) == 'json')
-			{
-				file = Path.join([folder, Path.withoutDirectory(file)]);
+    #if mobile_controls_file_support 
+    if (FileSystem.exists(folder)) 
+    #end
+    {
+        var files = readDirectory(folder);
+        trace('Found ' + files.length + ' files in ' + folder);
 
-				var str:String;
-				#if mobile_controls_file_support
-				if (FileSystem.exists(file))
-					str = File.getContent(file);
-				else #end
-					str = Assets.getText(file);
+        for (file in files)
+        {
+            if (Path.extension(file) == 'json')
+            {
+                var fullPath = Path.join([folder, Path.withoutDirectory(file)]);
+                var str:String = "";
 
-				if (mode == HITBOX) {
-					var json:CustomHitboxData = cast Json.parse(str);
-					var mapKey:String = Path.withoutDirectory(Path.withoutExtension(file));
-					map.set(mapKey, json);
-				}
-				else if (mode == ACTION || mode == DPAD) {
-					var json:MobileButtonsData = cast Json.parse(str);
-					var mapKey:String = Path.withoutDirectory(Path.withoutExtension(file));
-					map.set(mapKey, json);
-				}
-			}
-		}
-	}
+                #if mobile_controls_file_support
+                if (FileSystem.exists(fullPath))
+                    str = File.getContent(fullPath);
+                else 
+                #end
+                    str = Assets.getText(fullPath);
+
+                // Safety: Don't parse if the file was empty or missing
+                if (str == null || str.trim() == "") {
+                    trace('Warning: File ' + fullPath + ' is empty, skipping.');
+                    continue;
+                }
+
+                var mapKey:String = Path.withoutDirectory(Path.withoutExtension(file));
+                trace('Successfully loading JSON key: ' + mapKey + ' for mode: ' + mode);
+
+                if (mode == HITBOX) {
+                    var json:CustomHitboxData = cast Json.parse(str);
+                    map.set(mapKey, json);
+                }
+                else if (mode == ACTION || mode == DPAD) {
+                    var json:MobileButtonsData = cast Json.parse(str);
+                    map.set(mapKey, json);
+                }
+            }
+        }
+    }
+    #if mobile_controls_file_support
+    else {
+        trace('ERROR: Folder ' + folder + ' does not exist on disk.');
+    }
+    #end
+    }
 
 	inline public static function readDirectory(directory:String):Array<String>
 	{

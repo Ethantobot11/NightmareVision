@@ -1,4 +1,0 @@
-function onLoad()
-{
-	videoCutscene(songName);
-}

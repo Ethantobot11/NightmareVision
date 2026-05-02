@@ -315,6 +315,10 @@ class FunkinScript extends IrisEx implements IFlxDestroyable
 		// custom
 		set('FlxColor', funkin.scripts.ScriptClasses.ScriptedFlxColor);
 		set('Random', funkin.scripts.ScriptClasses.ScriptedFlxRandom);
+        set('MainMenuState', funkin.states.MainMenuState);
+        // Mobile Controls (So scripts can toggle Hitboxes/Pads)
+        set('MobileConfig', mobile.MobileConfig);
+        set('ButtonsModes', mobile.MobileConfig.ButtonsModes);
 		
 		// script
 		set("FunkinScript", FunkinScript);

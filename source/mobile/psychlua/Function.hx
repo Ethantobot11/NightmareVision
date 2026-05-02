@@ -2,12 +2,11 @@ package mobile.psychlua;
 
 import lime.ui.Haptic;
 import flixel.util.FlxSave;
-import psychlua.CustomSubstate;
-import psychlua.FunkinLua;
+import funkin.scripting.ScriptedState as CustomSubstate;
 
 class MobileFunctions
 {
-	public static function implement(funk:FunkinLua)
+	public static function implement(funk:CustomSubstate)
 	{
 		#if LUA_ALLOWED
 		var lua:State = funk.lua;
@@ -120,7 +119,7 @@ class MobileFunctions
 		});
 
 		//MobilePad
-		Lua_helper.add_callback(lua, 'addMobilePad', function(?managerName:String, DPad:String, Action:String, ?addToCustomSubstate:Bool = false, ?posAtCustomSubstate:Int = -1, ?addToCustomSubstate:Bool = false, ?posAtCustomSubstate:Int = -1):Void
+		Lua_helper.add_callback(lua, 'addMobilePad', function(?managerName:String, DPad:String, Action:String, ?addToCustomSubstate:Bool = false, ?posAtCustomSubstate:Int = -1):Void
 		{
 			var manager = PlayState.checkManager(managerName);
 			if (addToCustomSubstate)

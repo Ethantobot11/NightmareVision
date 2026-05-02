@@ -58,6 +58,8 @@
 
     <assets path='content' embed='false' if="MODS_ALLOWED" unless="ASSET_REDIRECT"/>
 
+    <!--<assets path="mobile/storageModes.txt" if="mobile"/>-->
+
     <!--OpenAL config-->    <!-- appreciate you cyn0x8 and smokey for finding this -->
     <section if="desktop">
         <assets path="projFiles/alsoft.ini" rename="alsoft.ini" type="text" if="windows"/>
@@ -146,6 +148,8 @@
 
     <!--For haxe 4.3.0 and newer cleaner error reporting-->
     <haxedef name="message.reporting" value="pretty" />
+
+    <haxedef name="mobile_controls_file_support" />
 
 	<!-- Do whatever you want I'm tired uninstall and install everytime -->
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />

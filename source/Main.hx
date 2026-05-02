@@ -11,6 +11,7 @@ import flixel.FlxGame;
 import flixel.input.keyboard.FlxKey;
 
 import funkin.backend.DebugDisplay;
+import mobile.MobileConfig.ButtonsModes;
 
 #if android
 import android.content.Context;
@@ -43,6 +44,16 @@ class Main extends Sprite
 	
 	public static function main():Void
 	{
+    MobileConfig.init(
+        'MobileControls', 
+        'ArkoseLabs/HaxeTale', 
+        'mobile/',
+        [
+            ['MobilePad/DPadModes', DPAD], 
+            ['MobilePad/ActionModes', ACTION], 
+            ['Hitbox/HitboxModes', HITBOX]
+        ]
+    );
 		Lib.current.addChild(new Main());
 	}
 	

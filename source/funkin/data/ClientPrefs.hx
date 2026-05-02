@@ -20,21 +20,23 @@ import funkin.input.Controls;
 @:build(funkin.backend.macro.SaveMacro.buildSaveVars('im gonna make this do smth later okay just not rn'))
 class ClientPrefs
 {
-    /* Mobile */
+	/* Mobile */
 	public var wideScreen:Bool = false;
 	#if android public var storageType:String = "EXTERNAL_DATA"; #end
-
+	
 	/**
 	 * MOBILE SETTINGS
 	 */
 	public static var extraButtons:Int = 2;
+	
 	public static var hitboxPos:Bool = false;
 	public static var storageType:String = "EXTERNAL_DATA";
-	public static var controlsAlpha:Float = FlxG.onMobile ? 0.6 : 0;
+	// og value public static var controlsAlpha:Float = FlxG.onMobile ? 0.6 : 0;
+	public static var controlsAlpha:Float = 0.6;
 	public static var hitboxType:String = "Gradient";
 	public static var hitboxMode:String = 'Normal';
 	public static var mobileExtraKeyReturns:Array<String> = ['SHIFT', 'SPACE', 'Q', 'E'];
-
+	
 	// debug ------------------------------------------------------------------------//
 	@saveVar public static var inDevMode:Bool = false;
 	

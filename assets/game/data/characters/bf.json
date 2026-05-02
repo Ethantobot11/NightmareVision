@@ -13,8 +13,74 @@
 		},
 		{
 			"offsets": [
-				-21,
-				63
+				5,
+				-6
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "BF NOTE LEFT0"
+		},
+		{
+			"offsets": [
+				-20,
+				-51
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "BF NOTE DOWN0"
+		},
+		{
+			"offsets": [
+				-46,
+				27
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "BF NOTE UP0"
+		},
+		{
+			"offsets": [
+				-48,
+				-7
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "BF NOTE RIGHT0"
+		},
+		{
+			"offsets": [
+				7,
+				19
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "BF NOTE LEFT MISS"
+		},
+		{
+			"offsets": [
+				-15,
+				-19
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "BF NOTE DOWN MISS"
+		},
+		{
+			"offsets": [
+				-46,
+				27
 			],
 			"loop": false,
 			"fps": 24,
@@ -24,8 +90,8 @@
 		},
 		{
 			"offsets": [
-				-46,
-				15
+				-44,
+				22
 			],
 			"loop": false,
 			"fps": 24,
@@ -35,148 +101,88 @@
 		},
 		{
 			"offsets": [
-				-2,
-				65
+				-3,
+				5
 			],
-			"flipY": false,
 			"loop": false,
 			"fps": 24,
 			"anim": "hey",
-			"flipX": false,
 			"indices": [],
-			"name": "Hey"
+			"name": "BF HEY!!"
 		},
 		{
 			"offsets": [
-				-3,
-				64
+				14,
+				18
 			],
-			"flipY": false,
 			"loop": false,
 			"fps": 24,
-			"anim": "singLEFT",
-			"flipX": false,
+			"anim": "hurt",
 			"indices": [],
-			"name": "Left"
+			"name": "BF hit"
 		},
 		{
 			"offsets": [
-				-3,
-				64
+				-4,
+				0
 			],
-			"flipY": false,
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFTmiss",
-			"flipX": false,
-			"indices": [],
-			"name": "Left Miss"
-		},
-		{
-			"offsets": [
-				-14,
-				63
-			],
-			"flipY": false,
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWN",
-			"flipX": false,
-			"indices": [],
-			"name": "Down"
-		},
-		{
-			"offsets": [
-				-14,
-				63
-			],
-			"flipY": false,
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWNmiss",
-			"flipX": false,
-			"indices": [],
-			"name": "Down Miss"
-		},
-		{
-			"offsets": [
-				-2,
-				64
-			],
-			"flipY": false,
-			"loop": false,
-			"fps": 24,
-			"anim": "singUP",
-			"flipX": false,
-			"indices": [],
-			"name": "Up"
-		},
-		{
-			"offsets": [
-				-2,
-				64
-			],
-			"flipY": false,
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT",
-			"flipX": false,
-			"indices": [],
-			"name": "Right"
-		},
-		{
-			"offsets": [
-				-2,
-				64
-			],
-			"flipY": false,
-			"loop": false,
+			"loop": true,
 			"fps": 24,
 			"anim": "scared",
-			"flipX": false,
 			"indices": [],
-			"name": "Scared"
+			"name": "BF idle shaking"
 		},
 		{
-			"loop": true,
-			"flipY": false,
 			"offsets": [
-				-2,
-				64
+				-10,
+				-16
 			],
-			"anim": "idle-scared",
+			"loop": false,
 			"fps": 24,
-			"name": "Scared",
-			"indices": [
-				6,
-				7,
-				8,
-				9
+			"anim": "dodge",
+			"indices": [],
+			"name": "boyfriend dodge"
+		},
+		{
+			"offsets": [
+				294,
+				267
 			],
-			"flipX": false
+			"loop": false,
+			"fps": 24,
+			"anim": "attack",
+			"indices": [],
+			"name": "boyfriend attack"
+		},
+		{
+			"offsets": [
+				-40,
+				-40
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "pre-attack",
+			"indices": [],
+			"name": "bf pre attack"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/BOYFRIEND",
 	"position": [
-		-12,
-		342
+		0,
+		350
 	],
-	"dance_every": 2,
-	"gameover_intial_sound": null,
-	"scalableOffsets": false,
-	"gameover_confirm_sound": null,
 	"healthicon": "bf",
-	"gameover_character": "bf-dead",
-	"vslice_sustains": false,
 	"flip_x": true,
-	"healthbar_colour": -13520687,
+	"healthbar_colors": [
+		49,
+		176,
+		209
+	],
 	"camera_position": [
 		0,
 		0
 	],
-	"gameover_loop_sound": null,
 	"sing_duration": 4,
-	"scale": 1,
-	"_editor_isPlayer": true
+	"scale": 1
 }

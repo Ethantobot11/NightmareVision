@@ -250,13 +250,13 @@ class Controls extends FlxActionSet
 	inline function get_NOTE_DOWN_R() return _note_downR.check();
 	
 	public var ACCEPT(get, never):Bool;
-    inline function get_ACCEPT() return checkAction(_accept, "A", "justPressed");
+    inline function get_ACCEPT() return checkAction(_accept, "buttonA", "justPressed");
 
     public var BACK(get, never):Bool;
-    inline function get_BACK() return checkAction(_back, "B", "justPressed");
+    inline function get_BACK() return checkAction(_back, "buttonB", "justPressed");
 
     public var PAUSE(get, never):Bool;
-    inline function get_PAUSE() return checkAction(_pause, "START", "justPressed");
+    inline function get_PAUSE() return checkAction(_pause, "buttonP", "justPressed");
 	
 	public var RESET(get, never):Bool;
 	

@@ -4,7 +4,9 @@ import haxe.Json;
 import haxe.io.Path;
 import flixel.util.FlxSave;
 import openfl.utils.Assets;
+#if sys
 import sys.FileSystem;
+#end
 import funkin.data.ClientPrefs as Options;
 
 using StringTools;
@@ -24,46 +26,42 @@ class MobileConfig {
 
 	public static var save:FlxSave;
 	public static function init(saveName:String, savePath:String, mobilePath:String = 'mobile/', folders:Array<Array<Dynamic>>)
-	{
-		save = new FlxSave();
-		save.bind(saveName, savePath);
-		if (mobilePath != null || mobilePath != '') mobileFolderPath = (mobilePath.endsWith('/') ? mobilePath : mobilePath + '/');
+    {
+    save = new FlxSave();
+    save.bind(saveName, savePath);
+    
+    // Safety check for path strings
+    if (mobilePath == null) mobilePath = 'mobile/';
+    mobileFolderPath = (mobilePath.endsWith('/') ? mobilePath : mobilePath + '/');
 
-		for (folder in folders) {
-			switch (folder[1]) {
-				case ACTION:
-					setDefaultMap('assets/' + mobileFolderPath + folder[0], actionModes, ACTION);
-					#if MOD_SUPPORT
-					final moddyFolder:String = (ModsFolder.currentModFolder != null
-						&& ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/MobilePad' : '';
-					if (FileSystem.exists(moddyFolder) && FileSystem.isDirectory(moddyFolder))
-					{
-						setModMap('$moddyFolder/ActionModes', actionModes, ACTION);
-					}
-					#end
-				case DPAD:
-					setDefaultMap('assets/' + mobileFolderPath + folder[0], dpadModes, DPAD);
-					#if MOD_SUPPORT
-					final moddyFolder:String = (ModsFolder.currentModFolder != null
-						&& ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/MobilePad' : '';
-					if (FileSystem.exists(moddyFolder) && FileSystem.isDirectory(moddyFolder))
-					{
-						setModMap('$moddyFolder/DPadModes', dpadModes, DPAD);
-					}
-					#end
-				case HITBOX:
-					setDefaultMap('assets/' + mobileFolderPath + folder[0], hitboxModes, HITBOX);
-					#if MOD_SUPPORT
-					final moddyFolder:String = (ModsFolder.currentModFolder != null
-						&& ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/Hitbox' : '';
-					if (FileSystem.exists(moddyFolder) && FileSystem.isDirectory(moddyFolder))
-					{
-						setModMap('$moddyFolder/HitboxModes', hitboxModes, HITBOX);
-					}
-					#end
-			}
-		}
-	}
+    for (folder in folders) {
+        var path:String = folder[0];
+        var mode:ButtonsModes = folder[1];
+
+        switch (mode) {
+            case ACTION:
+                Util.setupMaps('assets/' + mobileFolderPath + path, actionModes, ACTION);
+                #if MOD_SUPPORT
+                final moddyFolder:String = (ModsFolder.currentModFolder != null && ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/MobilePad/ActionModes' : '';
+                if (FileSystem.exists(moddyFolder)) Util.setupMaps(moddyFolder, actionModes, ACTION);
+                #end
+
+            case DPAD:
+                Util.setupMaps('assets/' + mobileFolderPath + path, dpadModes, DPAD);
+                #if MOD_SUPPORT
+                final moddyFolder:String = (ModsFolder.currentModFolder != null && ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/MobilePad/DPadModes' : '';
+                if (FileSystem.exists(moddyFolder)) Util.setupMaps(moddyFolder, dpadModes, DPAD);
+                #end
+
+            case HITBOX:
+                Util.setupMaps('assets/' + mobileFolderPath + path, hitboxModes, HITBOX);
+                #if MOD_SUPPORT
+                final moddyFolder:String = (ModsFolder.currentModFolder != null && ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile/Hitbox/HitboxModes' : '';
+                if (FileSystem.exists(moddyFolder)) Util.setupMaps(moddyFolder, hitboxModes, HITBOX);
+                #end
+            }
+        }
+    }
 
 	private static function setDefaultMap(folder:String, map:Dynamic, mode:ButtonsModes)
 	{

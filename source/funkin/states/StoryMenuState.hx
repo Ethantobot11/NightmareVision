@@ -187,6 +187,8 @@ class StoryMenuState extends MusicBeatState
 		changeDifficulty();
 		
 		super.create();
+        addMobilePad("FULL", "A_B_X_Y");
+        addMobilePadCamera();
 		scriptGroup.call('onCreatePost', []);
 	}
 	
