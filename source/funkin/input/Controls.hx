@@ -102,6 +102,13 @@ class Controls extends FlxActionSet
 		FlxG.gamepads.deviceConnected.add(gamepadConnected);
 		FlxG.gamepads.deviceDisconnected.add(gamepadDisconnected);
 	}
+
+    public static var mobileBinds:Map<String, Array<String>> = [
+		'up'			=> ['buttonUp'],
+		'left'			=> ['buttonLeft'],
+		'down'			=> ['buttonDown'],
+		'right'			=> ['buttonRight']
+	];
 	
 	static function gamepadConnected(gamepad:FlxGamepad)
 	{
@@ -250,8 +257,6 @@ class Controls extends FlxActionSet
 
     public var PAUSE(get, never):Bool;
     inline function get_PAUSE() return checkAction(_pause, "START", "justPressed");
-	
-	inline function get_PAUSE() return _pause.check();
 	
 	public var RESET(get, never):Bool;
 	

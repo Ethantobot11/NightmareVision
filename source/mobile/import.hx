@@ -2,6 +2,7 @@
 import mobile.objects.FunkinHitbox;
 import mobile.objects.FunkinJoyStick;
 import mobile.objects.FunkinMobilePad;
+import mobile.Util;
 
 #if sys
 import sys.io.File;

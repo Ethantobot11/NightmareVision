@@ -108,11 +108,11 @@ class MainMenuState extends MusicBeatState
 		add(verionDesc);
 		
 		changeSelection();
-		
-        addMobilePad("LEFT_FULL", "A_B");
-        addMobilePadCamera();
         
 		super.create();
+
+        addMobilePad("LEFT_FULL", "A_B");
+        addMobilePadCamera();
 		
 		scriptGroup.call('onCreate', []);
 	}

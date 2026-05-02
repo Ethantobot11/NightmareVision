@@ -19,7 +19,8 @@ class OptionsState extends MusicBeatState
 		'Graphics',
 		'Visuals and UI',
 		'Gameplay',
-		"Misc"
+		'Misc',
+        "Mobile Options"
 	];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	
@@ -47,6 +48,8 @@ class OptionsState extends MusicBeatState
 				openSubState(new funkin.states.options.MiscSubState());
 			case 'Adjust Delay and Combo':
 				FlxG.switchState(funkin.states.options.NoteOffsetState.new);
+            case 'Mobile Options':
+				openSubState(new mobile.options.MobileOptionsSubState());
 		}
 	}
 	
@@ -85,6 +88,8 @@ class OptionsState extends MusicBeatState
 		changeSelection();
 		
 		super.create();
+
+        mobileManager.addMobilePad("UP_DOWN", "A_B");
 		
 		scriptGroup.call('onCreate', []);
 	}

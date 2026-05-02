@@ -5,14 +5,15 @@ import haxe.io.Path;
 import flixel.util.FlxSave;
 import openfl.utils.Assets;
 import sys.FileSystem;
+import funkin.data.ClientPrefs as Options;
 
 using StringTools;
 
-enum ButtonModes
+enum ButtonsModes
 {
-	ACTION;
-	DPAD;
-	HITBOX;
+	ACTION; // Added from your snippet
+	DPAD;   // Added from your snippet
+	HITBOX; // Added from your snippet
 }
 
 class MobileConfig {
@@ -64,7 +65,7 @@ class MobileConfig {
 		}
 	}
 
-	private static function setDefaultMap(folder:String, map:Dynamic, mode:ButtonModes)
+	private static function setDefaultMap(folder:String, map:Dynamic, mode:ButtonsModes)
 	{
 		for (file in readDirectory(folder))
 		{

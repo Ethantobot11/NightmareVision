@@ -27,11 +27,10 @@ import funkin.api.DiscordClient;
 import hxvlc.flixel.*;
 #end
 
-#if mobile
 import mobile.*;
 import mobile.backend.*;
 import mobile.objects.*;
-#end
+import mobile.Util;
 //Android
 #if android
 import android.callback.CallBack as AndroidCallBack;

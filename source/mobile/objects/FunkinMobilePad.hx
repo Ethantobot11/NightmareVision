@@ -7,6 +7,8 @@ import openfl.display.BitmapData;
 import openfl.utils.Assets;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
+import funkin.data.ClientPrefs as Options;
+import mobile.Util;
 
 class FunkinMobilePad extends MobilePad {
 	public var curDPadMode(default, null):String = "NONE";
@@ -51,7 +53,7 @@ class FunkinMobilePad extends MobilePad {
 
 		button.immovable = true;
 		button.solid = button.moves = false;
-		button.antialiasing = Options.antialiasing;
+		//button.antialiasing = Options.antialiasing;
 		button.tag = framePath.toUpperCase();
 
 		if (ColorS != -1) button.color = ColorS;

@@ -10,8 +10,6 @@ import funkin.input.Controls;
 import funkin.data.*;
 import funkin.scripts.*;
 
-import mobile.backend.MobileControlManager;
-
 class MusicBeatSubstate extends FlxSubState
 {
 	// --- MOBILE PORT OVERRIDES START ---

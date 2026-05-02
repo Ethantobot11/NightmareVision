@@ -13,6 +13,8 @@ import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.Assets;
 import openfl.display.BitmapData;
+import funkin.data.ClientPrefs as Options;
+import mobile.Util;
 #if sys
 import sys.io.File;
 import sys.FileSystem;

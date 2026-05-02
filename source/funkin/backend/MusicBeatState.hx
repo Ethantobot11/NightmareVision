@@ -15,8 +15,6 @@ import funkin.data.*;
 import funkin.scripts.*;
 import funkin.input.Controls;
 
-import mobile.backend.MobileControlManager; 
-
 class MusicBeatState extends FlxUIState
 {
     // --- MOBILE PORT OVERRIDES START ---
@@ -142,6 +140,30 @@ class MusicBeatState extends FlxUIState
     public function sectionHit():Void {
         scriptGroup.call('onSectionHit', []);
         PluginsManager.callOnScripts('onSectionHit');
+    }
+
+    public function initStateScript(?scriptName:String, callOnLoad:Bool = true):Bool {
+    if (scriptName == null) {
+        final stateName = Type.getClassName(Type.getClass(this)).split('.').pop();
+        scriptName = stateName ?? '???';
+    }
+    this.scriptName = scriptName;
+    final scriptFile = FunkinScript.getPath('scripts/states/$scriptName');
+    if (scriptGroup.exists(scriptFile)) return true;
+
+    if (FunkinAssets.exists(scriptFile)) {
+        var newScript = FunkinScript.fromFile(scriptFile, scriptName);
+        scriptGroup.parent = this;
+        scriptGroup.addScript(newScript);
+        scripted = true;
+    }
+    if (callOnLoad) scriptGroup.call('onLoad', []);
+    return scripted;
+    }
+
+    public function refreshZ(?group:flixel.group.FlxGroup.FlxTypedGroup<flixel.FlxBasic>) {
+    group ??= cast this;
+    group.sort(funkin.utils.SortUtil.sortByZ, flixel.util.FlxSort.ASCENDING);
     }
 
     override function destroy() {

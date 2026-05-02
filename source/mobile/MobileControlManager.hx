@@ -7,6 +7,7 @@ import mobile.MobilePad;
 import mobile.Hitbox;
 import mobile.JoyStick;
 import flixel.FlxBasic;
+import funkin.data.ClientPrefs as Options;
 
 /**
  * A simple mobile manager for who doesn't want to create these manually
