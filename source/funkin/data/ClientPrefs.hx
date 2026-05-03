@@ -22,7 +22,7 @@ class ClientPrefs
 {
 	/* Mobile */
 	public static var wideScreen:Bool = false;
-	#if android public var storageType:String = "EXTERNAL_DATA"; #end
+	#if android public static var storageType:String = "EXTERNAL_DATA"; #end
 	
 	/**
 	 * MOBILE SETTINGS
