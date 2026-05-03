@@ -11,7 +11,7 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 	var storageTypes:Array<String> = ["EXTERNAL_DATA", "EXTERNAL_OBB", "EXTERNAL_MEDIA", "EXTERNAL"];
 	var externalPaths:Array<String> = StorageUtil.checkExternalPaths(true);
 	var customPaths:Array<String> = StorageUtil.getCustomStorageDirectories(false);
-	final lastStorageType:String = ClientPrefs.storageType;
+	final lastStorageType:String = ClientPrefs.data.storageType;
 	#end
 
 	var option:Option;
@@ -97,7 +97,7 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 		option = new Option('Wide Screen Mode',
 			'If checked, The game will stetch to fill your whole screen. (WARNING: Can result in bad visuals & break some mods that resizes the game/cameras)',
 			'wideScreen', 'bool');
-		option.onChange = () -> ScreenUtil.wideScreen.enabled = ClientPrefs.wideScreen;
+		option.onChange = () -> ScreenUtil.wideScreen.enabled = ClientPrefs.data.wideScreen;
 		addOption(option);
 		#end
 
@@ -118,7 +118,7 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 
 		#if android
 		if (ClientPrefs.data.storageType != lastStorageType) {
-			File.saveContent(lime.system.System.applicationStorageDirectory + 'storagetype.txt', ClientPrefs.storageType);
+			File.saveContent(lime.system.System.applicationStorageDirectory + 'storagetype.txt', ClientPrefs.data.storageType);
 			ClientPrefs.saveSettings();
 			StorageUtil.initExternalStorageDirectory();
 		}
