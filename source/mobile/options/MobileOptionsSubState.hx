@@ -3,6 +3,8 @@ package mobile.options;
 import flixel.input.keyboard.FlxKey;
 import funkin.states.options.BaseOptionsMenu;
 import funkin.states.options.Option;
+import funkin.data.ClientPrefs;
+import mobile.ScreenUtil;
 
 class MobileOptionsSubState extends BaseOptionsMenu {
 	#if android
@@ -33,7 +35,7 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 		option.decimals = 1;
 		option.onChange = () -> {
 			mobileManager.mobilePad.alpha = curOption.getValue();
-			//ClientPrefs.toggleVolumeKeys();
+			ClientPrefs.toggleVolumeKeys();
 		};
 		addOption(option);
 
@@ -76,12 +78,6 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 		option = new Option('Hitbox Hint',
 			'Hitbox Hint',
 			'hitboxHint',
-			'bool');
-		addOption(option);
-
-		option = new Option('V Slice Controls',
-			'If checked, The game\'s control will be like original Friday Night Funkin\': Mobile.\n(WARNING: This Option can break the some mechanics, please use for simple mods)',
-			'ogGameControls',
 			'bool');
 		addOption(option);
 

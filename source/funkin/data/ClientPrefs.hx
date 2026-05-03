@@ -388,6 +388,10 @@ class ClientPrefs
 		
 		return copiedArray;
 	}
+
+    public static function toggleVolumeKeys() {
+        throw new haxe.exceptions.NotImplementedException();
+    }
 }
 
 @:access(flixel.util.FlxSave)
