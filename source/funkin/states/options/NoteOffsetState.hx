@@ -198,6 +198,8 @@ class NoteOffsetState extends MusicBeatState
 		FunkinSound.playMusic(Paths.music('offsetSong'), 1, true);
 		
 		super.create();
+
+        addMobilePad("LEFT_FULL", "A_B");
 	}
 	
 	var holdTime:Float = 0;

@@ -169,6 +169,8 @@ class PauseSubState extends MusicBeatSubstate
 		cameras = [cam];
 		
 		super.create();
+
+        addMobilePad("LEFT_FULL", "A_B");
 		
 		scriptGroup.call('onCreatePost', []);
 	}

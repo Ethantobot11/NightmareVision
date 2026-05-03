@@ -127,6 +127,8 @@ class ControlsSubState extends MusicBeatSubstate
 			optionsList[i].index = 0;
 			optionsList[i].index = NONE;
 		}
+
+        addMobilePad("LEFT_FULL", "A_B");
 		
 		scriptGroup.set('device', device);
 		scriptGroup.set('optionsList', optionsList);

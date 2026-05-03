@@ -37,12 +37,14 @@ class MusicBeatState extends FlxUIState
     }
     public function addMobilePad(DPad:String, Action:String) {
         mobileManager.addMobilePad(DPad, Action);
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
     }
     public function removeMobilePad() {
         mobileManager.removeMobilePad();
     }
     public function addHitbox(?mode:String, ?hints:Bool):Void {
         mobileManager.addHitbox(mode, hints);
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
     }
     public function removeHitbox() {
         mobileManager.removeHitbox();
@@ -172,7 +174,7 @@ class MusicBeatState extends FlxUIState
         
         // Clean up mobile manager to prevent memory leaks
         if (mobileManager != null) mobileManager.destroy();
-        
+        funkin.input.Controls.instance.setMobileManager(null);
         super.destroy();
     }
 

@@ -123,6 +123,7 @@ class WIPNoteSkinEditor extends UIState
 		setUpControls();
 		
 		FunkinSound.playMusic(Paths.music('offsetSong'), 1, true);
+        addMobilePad("LEFT_FULL", "A_B");
 	}
 	
 	function setUpControls()

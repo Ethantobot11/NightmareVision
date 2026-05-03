@@ -114,6 +114,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		
 		changeSelection();
 		reloadCheckboxes();
+
+        addMobilePad("LEFT_FULL", "A_B");
 		
 		scriptGroup.set('bg', bg);
 		scriptGroup.set('grpOptions', grpOptions);

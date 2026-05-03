@@ -29,5 +29,7 @@ class MiscSubState extends BaseOptionsMenu
 		addOption(pause);
 		
 		super();
+
+        addMobilePad("LEFT_FULL", "A_B");
 	}
 }

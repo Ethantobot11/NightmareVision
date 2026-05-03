@@ -77,6 +77,8 @@ class NotesSubState extends MusicBeatSubstate
 		add(hsbText);
 		
 		changeSelection();
+
+        addMobilePad("LEFT_FULL", "A_B");
 		
 		scriptGroup.set('curSelected', curSelected);
 		scriptGroup.set('typeSelected', typeSelected);

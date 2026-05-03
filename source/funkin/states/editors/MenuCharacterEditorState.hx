@@ -70,6 +70,8 @@ class MenuCharacterEditorState extends MusicBeatState
 		updateCharTypeBox();
 		
 		super.create();
+
+        addMobilePad("LEFT_FULL", "A_B");
 	}
 	
 	var UI_typebox:FlxUITabMenu;

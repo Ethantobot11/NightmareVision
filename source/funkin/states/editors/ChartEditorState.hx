@@ -34,6 +34,7 @@ import flixel.addons.ui.FlxUI;
 import flixel.group.FlxGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxAxes;
+import funkin.backend.MusicBeatState;
 
 import funkin.objects.Character;
 import funkin.data.StageData;
@@ -526,6 +527,8 @@ class ChartEditorState extends haxe.ui.backend.flixel.UIState
 		lastSong = currentSongName;
 		
 		updateGrid();
+
+        addMobilePad("CHART_EDITOR", "CHART_EDITOR");
 	}
 	
 	public static function getDefaultSong():Song

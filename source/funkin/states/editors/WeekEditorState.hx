@@ -107,6 +107,8 @@ class WeekEditorState extends MusicBeatState
 		FlxG.mouse.visible = true;
 		
 		super.create();
+
+        addMobilePad("LEFT_FULL", "A_B");
 	}
 	
 	var UI_box:FlxUITabMenu;

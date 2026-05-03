@@ -53,6 +53,8 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		option.onChange = onChangeFramerate;
 		
 		super();
+
+        addMobilePad("LEFT_FULL", "A_B");
 	}
 	
 	function onChangeAntiAliasing()

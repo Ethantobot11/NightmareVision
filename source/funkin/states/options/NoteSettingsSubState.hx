@@ -35,5 +35,7 @@ class NoteSettingsSubState extends BaseOptionsMenu
 		// addOption(option);
 		
 		super();
+
+        addMobilePad("LEFT_FULL", "A_B");
 	}
 }

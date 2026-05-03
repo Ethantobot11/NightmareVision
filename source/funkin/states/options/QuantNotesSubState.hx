@@ -117,6 +117,8 @@ class QuantNotesSubState extends MusicBeatSubstate
 		add(hsbText);
 		
 		changeSelection();
+
+        addMobilePad("LEFT_FULL", "A_B");
 	}
 	
 	var changingNote:Bool = false;

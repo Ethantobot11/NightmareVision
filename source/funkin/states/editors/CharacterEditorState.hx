@@ -183,6 +183,8 @@ class CharacterEditorState extends UIState // MUST EXTEND UI STATE needed for ac
 		pointerBounds = new DebugBounds(cameraPointer);
 		add(pointerBounds);
 		pointerBounds.alpha = 0;
+
+        addMobilePad("CHARACTER_EDITOR", "CHARACTER_EDITOR");
 	}
 	
 	function exitState()

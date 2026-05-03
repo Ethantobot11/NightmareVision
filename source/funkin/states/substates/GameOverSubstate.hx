@@ -101,6 +101,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		
 		super.create();
 		
+        addMobilePad("NONE", "A_B");
+
 		PlayState.instance?.scripts.call('onGameOverPost', []);
 	}
 	

@@ -1,8 +1,9 @@
 package mobile.psychlua;
 
+import funkin.objects.CutsceneHandler;
 import lime.ui.Haptic;
 import flixel.util.FlxSave;
-import funkin.scripting.ScriptedState as CustomSubstate;
+import funkin.scripts.FunkinScript as CustomSubstate;
 
 class MobileFunctions
 {

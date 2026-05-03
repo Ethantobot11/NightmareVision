@@ -75,6 +75,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		addOption(option);
 		
 		super();
+
+        addMobilePad("LEFT_FULL", "A_B");
 	}
 	
 	function onChangeHitsoundVolume()

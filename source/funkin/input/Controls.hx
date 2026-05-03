@@ -162,49 +162,30 @@ class Controls extends FlxActionSet
 	
 	public var UI_UP(get, never):Bool;
     inline function get_UI_UP() return checkAction(_ui_up, "UP");
-	public var UI_LEFT(get, never):Bool;
-	
-	inline function get_UI_LEFT() return _ui_left.check();
-	
-	public var UI_RIGHT(get, never):Bool;
-	
-	inline function get_UI_RIGHT() return _ui_right.check();
-	
-	public var UI_DOWN(get, never):Bool;
-	
-	inline function get_UI_DOWN() return _ui_down.check();
-	
-	public var UI_UP_P(get, never):Bool;
+
+    public var UI_LEFT(get, never):Bool;
+    inline function get_UI_LEFT() return checkAction(_ui_left, "LEFT"); // Changed
+    
+    public var UI_RIGHT(get, never):Bool;
+    inline function get_UI_RIGHT() return checkAction(_ui_right, "RIGHT"); // Changed
+    
+    public var UI_DOWN(get, never):Bool;
+    inline function get_UI_DOWN() return checkAction(_ui_down, "DOWN"); // Changed
+    
+    // UI PRESSES (Just Pressed)
+    public var UI_UP_P(get, never):Bool;
     inline function get_UI_UP_P() return checkAction(_ui_upP, "UP", "justPressed");
-	
-	public var UI_LEFT_P(get, never):Bool;
-	
-	inline function get_UI_LEFT_P() return _ui_leftP.check();
-	
-	public var UI_RIGHT_P(get, never):Bool;
-	
-	inline function get_UI_RIGHT_P() return _ui_rightP.check();
-	
-	public var UI_DOWN_P(get, never):Bool;
+    
+    public var UI_LEFT_P(get, never):Bool;
+    inline function get_UI_LEFT_P() return checkAction(_ui_leftP, "LEFT", "justPressed"); // Changed
+    
+    public var UI_RIGHT_P(get, never):Bool;
+    inline function get_UI_RIGHT_P() return checkAction(_ui_rightP, "RIGHT", "justPressed"); // Changed
+    
+    public var UI_DOWN_P(get, never):Bool;
     inline function get_UI_DOWN_P() return checkAction(_ui_downP, "DOWN", "justPressed");
-	
-	public var UI_UP_R(get, never):Bool;
-	
-	inline function get_UI_UP_R() return _ui_upR.check();
-	
-	public var UI_LEFT_R(get, never):Bool;
-	
-	inline function get_UI_LEFT_R() return _ui_leftR.check();
-	
-	public var UI_RIGHT_R(get, never):Bool;
-	
-	inline function get_UI_RIGHT_R() return _ui_rightR.check();
-	
-	public var UI_DOWN_R(get, never):Bool;
-	
-	inline function get_UI_DOWN_R() return _ui_downR.check();
-	
-	// NOTE CONTROLS (Gameplay)
+    
+    // NOTE CONTROLS (Gameplay - Holding)
     public var NOTE_UP(get, never):Bool;
     inline function get_NOTE_UP() return checkAction(_note_up, "UP");
 
@@ -216,44 +197,44 @@ class Controls extends FlxActionSet
 
     public var NOTE_DOWN(get, never):Bool;
     inline function get_NOTE_DOWN() return checkAction(_note_down, "DOWN");
-	
-	public var NOTE_UP_P(get, never):Bool;
-	
-	inline function get_NOTE_UP_P() return _note_upP.check();
-	
-	public var NOTE_LEFT_P(get, never):Bool;
-	
-	inline function get_NOTE_LEFT_P() return _note_leftP.check();
-	
-	public var NOTE_RIGHT_P(get, never):Bool;
-	
-	inline function get_NOTE_RIGHT_P() return _note_rightP.check();
-	
-	public var NOTE_DOWN_P(get, never):Bool;
-	
-	inline function get_NOTE_DOWN_P() return _note_downP.check();
-	
-	public var NOTE_UP_R(get, never):Bool;
-	
-	inline function get_NOTE_UP_R() return _note_upR.check();
-	
-	public var NOTE_LEFT_R(get, never):Bool;
-	
-	inline function get_NOTE_LEFT_R() return _note_leftR.check();
-	
-	public var NOTE_RIGHT_R(get, never):Bool;
-	
-	inline function get_NOTE_RIGHT_R() return _note_rightR.check();
-	
-	public var NOTE_DOWN_R(get, never):Bool;
-	
-	inline function get_NOTE_DOWN_R() return _note_downR.check();
-	
-	public var ACCEPT(get, never):Bool;
-    inline function get_ACCEPT() return checkAction(_accept, "buttonA", "justPressed");
+    
+    // NOTE PRESSES (Gameplay - Tapping)
+    public var NOTE_UP_P(get, never):Bool;
+    inline function get_NOTE_UP_P() return checkAction(_note_upP, "UP", "justPressed"); // Changed
+    
+    public var NOTE_LEFT_P(get, never):Bool;
+    inline function get_NOTE_LEFT_P() return checkAction(_note_leftP, "LEFT", "justPressed"); // Changed
+    
+    public var NOTE_RIGHT_P(get, never):Bool;
+    inline function get_NOTE_RIGHT_P() return checkAction(_note_rightP, "RIGHT", "justPressed"); // Changed
+    
+    public var NOTE_DOWN_P(get, never):Bool;
+    inline function get_NOTE_DOWN_P() return checkAction(_note_downP, "DOWN", "justPressed"); // Changed
+
+    public var UI_UP_R(get, never):Bool;
+
+    inline function get_UI_UP_R() return _ui_upR.check();
+
+    public var UI_LEFT_R(get, never):Bool;
+
+    inline function get_UI_LEFT_R() return _ui_leftR.check();
+
+    public var UI_RIGHT_R(get, never):Bool;
+
+    inline function get_UI_RIGHT_R() return _ui_rightR.check();
+
+    public var UI_DOWN_R(get, never):Bool;
+
+    inline function get_UI_DOWN_R() return _ui_downR.check();
+
+    // SYSTEM BUTTONS
+    public var ACCEPT(get, never):Bool;
+    // Match this to your JSON ("A" or "buttonA")
+    inline function get_ACCEPT() return checkAction(_accept, "buttonA", "justPressed"); 
 
     public var BACK(get, never):Bool;
-    inline function get_BACK() return checkAction(_back, "buttonB", "justPressed");
+    // Match this to your JSON ("B" or "buttonB")
+    inline function get_BACK() return checkAction(_back, "buttonB", "justPressed"); 
 
     public var PAUSE(get, never):Bool;
     inline function get_PAUSE() return checkAction(_pause, "buttonP", "justPressed");

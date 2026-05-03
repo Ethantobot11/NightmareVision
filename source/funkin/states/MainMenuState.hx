@@ -38,6 +38,7 @@ class MainMenuState extends MusicBeatState
 	
 	override function create()
 	{
+        FlxG.mouse.visible = true;
 		#if MODS_ALLOWED
 		Mods.pushGlobalMods();
 		#end
