@@ -114,7 +114,9 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		
 		changeSelection();
 		reloadCheckboxes();
-
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("LEFT_FULL", "A_B");
 		
 		scriptGroup.set('bg', bg);

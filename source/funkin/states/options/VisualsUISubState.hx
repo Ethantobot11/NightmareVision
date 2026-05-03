@@ -44,7 +44,9 @@ class VisualsUISubState extends BaseOptionsMenu
 		addOption(option);
 		
 		super();
-
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("LEFT_FULL", "A_B");
 	}
 }

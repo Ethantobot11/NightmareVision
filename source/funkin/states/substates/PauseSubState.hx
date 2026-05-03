@@ -169,7 +169,9 @@ class PauseSubState extends MusicBeatSubstate
 		cameras = [cam];
 		
 		super.create();
-
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("LEFT_FULL", "A_B");
 		
 		scriptGroup.call('onCreatePost', []);
@@ -367,7 +369,7 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		pauseMusic.destroy();
 		scriptGroup.call('onDestroy', []);
-		
+		funkin.input.Controls.instance.setMobileManager(null);
 		super.destroy();
 	}
 	

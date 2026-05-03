@@ -138,7 +138,9 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		
 		changeSelection();
 		reloadCheckboxes();
-
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("LEFT_FULL", "A_B");
 	}
 	

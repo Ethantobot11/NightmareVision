@@ -77,7 +77,9 @@ class NotesSubState extends MusicBeatSubstate
 		add(hsbText);
 		
 		changeSelection();
-
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("LEFT_FULL", "A_B");
 		
 		scriptGroup.set('curSelected', curSelected);

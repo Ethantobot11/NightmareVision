@@ -198,7 +198,9 @@ class NoteOffsetState extends MusicBeatState
 		FunkinSound.playMusic(Paths.music('offsetSong'), 1, true);
 		
 		super.create();
-
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("LEFT_FULL", "A_B");
 	}
 	

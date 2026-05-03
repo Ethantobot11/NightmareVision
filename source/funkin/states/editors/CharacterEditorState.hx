@@ -183,7 +183,9 @@ class CharacterEditorState extends UIState // MUST EXTEND UI STATE needed for ac
 		pointerBounds = new DebugBounds(cameraPointer);
 		add(pointerBounds);
 		pointerBounds.alpha = 0;
-
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("CHARACTER_EDITOR", "CHARACTER_EDITOR");
 	}
 	
@@ -1480,6 +1482,7 @@ class CharacterEditorState extends UIState // MUST EXTEND UI STATE needed for ac
 	
 	override function destroy()
 	{
+        funkin.input.Controls.instance.setMobileManager(null);
 		super.destroy();
 	}
 	

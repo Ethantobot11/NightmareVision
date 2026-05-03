@@ -284,6 +284,7 @@ class ChartConverterState extends MusicBeatState
 	
 	override function destroy()
 	{
+        funkin.input.Controls.instance.setMobileManager(null);
 		super.destroy();
 	}
 	

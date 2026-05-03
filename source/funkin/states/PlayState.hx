@@ -843,9 +843,13 @@ class PlayState extends MusicBeatState
 		callHUDFunc(hud -> hud.cachePopUpScore());
 		
 		super.create();
-		
+
+		if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addPlayStateHitbox(); 
         addHitboxDeadZone(null, ['buttonP']);
+        addMobilePad("NONE", "P");
 		
 		FunkinAssets.cache.clearUnusedMemory();
 		
@@ -2853,7 +2857,7 @@ class PlayState extends MusicBeatState
 		
 		FlxDestroyUtil.destroyArray(NoteUtil.noteskins);
 		NoteUtil.noteskins.resize(0);
-		
+		funkin.input.Controls.instance.setMobileManager(null);
 		super.destroy();
 	}
 	

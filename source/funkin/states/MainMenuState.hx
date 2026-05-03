@@ -112,6 +112,9 @@ class MainMenuState extends MusicBeatState
 		
 		super.create();
 		
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
 		addMobilePad("UP_DOWN", "A_B");
 		addMobilePadCamera();
 		

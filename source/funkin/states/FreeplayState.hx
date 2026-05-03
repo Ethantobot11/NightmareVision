@@ -166,6 +166,10 @@ class FreeplayState extends MusicBeatState
 		curDifficulty = Math.round(Math.max(0, Difficulty.defaultDifficulties.indexOf(lastDifficultyName)));
 		
 		super.create();
+
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("LEFT_FULL", "A_B_C_D_V_X_Y_Z");
 		scriptGroup.call('onCreate', []);
 	}

@@ -100,7 +100,9 @@ class GameOverSubstate extends MusicBeatSubstate
 		}
 		
 		super.create();
-		
+		if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("NONE", "A_B");
 
 		PlayState.instance?.scripts.call('onGameOverPost', []);
@@ -218,6 +220,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	
 	override function destroy()
 	{
+        funkin.input.Controls.instance.setMobileManager(null);
 		instance = null;
 		super.destroy();
 	}

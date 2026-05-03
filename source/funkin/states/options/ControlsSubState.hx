@@ -127,7 +127,9 @@ class ControlsSubState extends MusicBeatSubstate
 			optionsList[i].index = 0;
 			optionsList[i].index = NONE;
 		}
-
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("LEFT_FULL", "A_B");
 		
 		scriptGroup.set('device', device);
@@ -381,6 +383,7 @@ class ControlsSubState extends MusicBeatSubstate
 	
 	override function destroy()
 	{
+        funkin.input.Controls.instance.setMobileManager(null);
 		FlxG.cameras.remove(camera);
 		super.destroy();
 	}

@@ -554,7 +554,7 @@ class ChartEditorState extends haxe.ui.backend.flixel.UIState
 	public override function destroy():Void
 	{
 		FlxG.mouse.visible = false;
-		
+		funkin.input.Controls.instance.setMobileManager(null);
 		super.destroy();
 	}
 	

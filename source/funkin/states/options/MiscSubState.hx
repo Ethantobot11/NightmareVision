@@ -29,7 +29,9 @@ class MiscSubState extends BaseOptionsMenu
 		addOption(pause);
 		
 		super();
-
+        if (mobileManager != null) {
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         addMobilePad("LEFT_FULL", "A_B");
 	}
 }
