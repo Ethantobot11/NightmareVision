@@ -37,7 +37,6 @@ class ClientPrefs
 	public static var hitboxType:String = "Gradient";
 	public static var hitboxMode:String = 'Normal';
 	public static var mobileExtraKeyReturns:Array<String> = ['SHIFT', 'SPACE', 'Q', 'E'];
-    public static var wideScreen:Bool = false;
 	
 	// debug ------------------------------------------------------------------------//
 	@saveVar public static var inDevMode:Bool = false;
