@@ -111,6 +111,7 @@ class StorageUtil
 		#end
 		return daPath;
 	}
+    
 	public static function getExternalStorageDirectory():String
 	{
 		#if android

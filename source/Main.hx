@@ -63,14 +63,13 @@ class Main extends Sprite
 	{
 		super();
         #if mobile
-		#if android
-		StorageUtil.requestPermissions();
-		StorageUtil.initExternalStorageDirectory();
-		#end
-		Sys.setCwd(StorageUtil.getExternalStorageDirectory());
-		//Sys.setCwd(haxe.io.Path.addTrailingSlash(StorageUtil.getDirectory()));
-		StorageUtil.copySpesificFileFromAssets();
-		#end
+        #if android
+        StorageUtil.requestPermissions();
+        StorageUtil.initExternalStorageDirectory();
+        StorageUtil.copySpesificFileFromAssets('assets/mobile/storageModes.txt', StorageUtil.getCustomStoragePath(), true);
+        #end
+        Sys.setCwd(StorageUtil.getExternalStorageDirectory());
+        #end
 		#if (CRASH_HANDLER && !debug)
 		funkin.backend.CrashHandler.init();
 		#end

@@ -1,0 +1,6 @@
+Name: EXTERNAL_PE Folder: /storage/emulated/0/.PsychEngine
+Name: EXTERNAL_PEO Folder: /storage/emulated/0/.PsychOnline
+Name: EXTERNAL_PEX Folder: /storage/emulated/0/.Psych Extended
+Name: EXTERNAL_CDEV Folder: /storage/emulated/0/.CdevEngine
+Name: EXTERNAL_JS Folder: /storage/emulated/0/.JS Engine
+Name: EXTERNAL_iOS Folder: /storage/emulated/0/.iOS
