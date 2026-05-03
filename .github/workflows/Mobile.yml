@@ -21,13 +21,22 @@ jobs:
         with:
           haxe-version: 4.3.7
 
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # Most stable for Android builds
+          java-version: '17'      # Use 11 or 17 depending on your NDK version
+
+      - name: Set JAVA_HOME
+        run: echo "JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+
       - name: Install Libs
         run: |
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null --quiet
           haxelib install hxpkg --quiet
           haxelib install compiletime --quiet
-          haxelib run hxpkg install
+          haxelib run hxpkg install --quiet
 
       - name: Configure Android
         run: |
@@ -63,7 +72,7 @@ jobs:
           haxelib install hxcpp > /dev/null --quiet
           haxelib install hxpkg --quiet
           haxelib install compiletime --quiet
-          haxelib run hxpkg install
+          haxelib run hxpkg install --quiet
 
       - name: Compile iOS
         run: haxelib run lime build ios -nosign -D ${{ inputs.buildFlags || '' }}
