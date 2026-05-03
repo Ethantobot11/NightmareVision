@@ -3,7 +3,6 @@ content/ignore_*/*
 content/avas_evil_secrets/*
 
 # Haxelib & HXPKG
-export/
 .haxelib/*
 hmm.json
 
