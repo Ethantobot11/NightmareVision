@@ -21,7 +21,7 @@ import funkin.input.Controls;
 class ClientPrefs
 {
 	/* Mobile */
-	public static var staticwideScreen:Bool = false;
+	public static var wideScreen:Bool = false;
 	#if android public var storageType:String = "EXTERNAL_DATA"; #end
 	
 	/**
