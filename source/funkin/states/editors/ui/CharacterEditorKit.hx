@@ -138,5 +138,5 @@ class CharEditorUI extends flixel.group.FlxSpriteContainer
 	// i didnt really need to do this but i also didnt want this like
 	// annoying big ass line so its jhust like suire dude
 	//final _legend = MacroUtil.getPrecompliedContent('assets/excluded/ui/charEditor/legend.txt');
-	final _legend = "bro why github cli dosen't see it ?"
+	final _legend = ("bro why github cli dosen't see it ?");
 }
