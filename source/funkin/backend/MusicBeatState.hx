@@ -178,6 +178,10 @@ class MusicBeatState extends FlxUIState
         super.destroy();
     }
 
+    public static function getState():MusicBeatState {
+		return cast (FlxG.state, MusicBeatState);
+	}
+
     override function closeSubState() {
         scriptGroup.call('onCloseSubState', []);
         super.closeSubState();

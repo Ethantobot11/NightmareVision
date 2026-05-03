@@ -18,6 +18,8 @@ import android.content.Context;
 import android.os.Build;
 #end
 
+import flixel.FlxG;
+
 @:nullSafety(Strict)
 class Main extends Sprite
 {
@@ -60,15 +62,14 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		
         #if mobile
 		#if android
-		MobileUtil.getPermissions();
-		MobileUtil.initDirectory();
+		StorageUtil.requestPermissions();
+		StorageUtil.initExternalStorageDirectory();
 		#end
-		Sys.setCwd(MobileUtil.getAssetDirectory());
-		//Sys.setCwd(haxe.io.Path.addTrailingSlash(MobileUtil.getDirectory()));
-		MobileUtil.copyAssets();
+		Sys.setCwd(StorageUtil.getExternalStorageDirectory());
+		//Sys.setCwd(haxe.io.Path.addTrailingSlash(StorageUtil.getDirectory()));
+		StorageUtil.copySpesificFileFromAssets();
 		#end
 		#if (CRASH_HANDLER && !debug)
 		funkin.backend.CrashHandler.init();

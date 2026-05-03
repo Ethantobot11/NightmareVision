@@ -27,9 +27,10 @@ class ClientPrefs
 	/**
 	 * MOBILE SETTINGS
 	 */
-	public static var extraButtons:Int = 2;
+	public static var extraButtons:Int = 0;
 	
 	public static var hitboxPos:Bool = false;
+    public static var hitboxHint:Bool = true;
 	public static var storageType:String = "EXTERNAL_DATA";
 	// og value public static var controlsAlpha:Float = FlxG.onMobile ? 0.6 : 0;
 	public static var controlsAlpha:Float = 0.6;

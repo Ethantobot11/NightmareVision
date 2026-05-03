@@ -649,18 +649,28 @@ class Controls extends FlxActionSet
 	}
 
     public function setMobileManager(manager:MobileControlManager) {
-    this.mobileControls = manager;
+        this.mobileControls = manager;
     }
 
     private function checkAction(action:FlxActionDigital, mobileButton:String, ?state:String = "pressed"):Bool {
+    // 1. Check Keyboard/Gamepad first
     if (action.check()) return true;
 
-    if (mobileControls != null && mobileControls.mobilePad != null) {
-        return switch(state) {
-            case "justPressed": mobileControls.mobilePad.justPressed(mobileButton);
-            case "justReleased": mobileControls.mobilePad.justReleased(mobileButton);
-            default: mobileControls.mobilePad.pressed(mobileButton);
-        };
+    // 2. Check Mobile Controls if they exist
+    if (mobileControls != null) {
+        // Check Hitbox (Gameplay)
+        // Guard: check if hitbox exists AND the button string is valid
+        if (FlxG.mouse.justPressed &&mobileControls.hitbox != null) {
+            var hit = mobileControls.hitbox.getButton(mobileButton);
+            if (hit != null) return Reflect.getProperty(hit, state);
+        }
+        
+        // Check Virtual Pad (Menus/Gameplay)
+        // Guard: check if mobilePad exists AND the button string is valid
+        if (FlxG.mouse.justPressed && mobileControls.mobilePad != null) {
+            var btn = mobileControls.mobilePad.getButton(mobileButton);
+            if (btn != null) return Reflect.getProperty(btn, state);
+        }
     }
     return false;
     }

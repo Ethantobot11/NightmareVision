@@ -8,7 +8,7 @@ import lime.system.System;
 import lime.app.Application;
 import openfl.Assets;
 import haxe.io.Bytes;
-
+import funkin.utils.CoolUtil;
 /**
  * A simple storage class for mobile.
  * @author ArkoseLabs
@@ -194,11 +194,11 @@ class StorageUtil
 
 			File.saveContent('$folder/$fileName', fileData);
 			if (alert)
-				CoolUtil.showPopUp('${fileName} has been saved.', "Success!");
+				CoolUtil.doPopUp('${fileName} has been saved.', "Success!");
 		}
 		catch (e:Dynamic)
 			if (alert)
-				CoolUtil.showPopUp('${fileName} couldn\'t be saved.\n${e.message}', "Error!");
+				CoolUtil.doPopUp('${fileName} couldn\'t be saved.\n${e.message}', "Error!");
 			else
 				trace('$fileName couldn\'t be saved. (${e.message})');
 	}

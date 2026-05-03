@@ -32,12 +32,14 @@ class MusicBeatSubstate extends FlxSubState
 	}
 	public function addMobilePad(DPad:String, Action:String) {
 		mobileManager.addMobilePad(DPad, Action);
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
 	}
 	public function removeMobilePad() {
 		mobileManager.removeMobilePad();
 	}
 	public function addHitbox(?mode:String, ?hints:Bool):Void {
 		mobileManager.addHitbox(mode, hints);
+        funkin.input.Controls.instance.setMobileManager(mobileManager);
 	}
 	public function removeHitbox() {
 		mobileManager.removeHitbox();
