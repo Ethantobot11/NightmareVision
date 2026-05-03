@@ -118,8 +118,8 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 
 		#if android
 		if (ClientPrefs.storageType != lastStorageType) {
-			File.saveContent(lime.system.System.applicationStorageDirectory + 'storagetype.txt', ClientPrefs.data.storageType);
-			ClientPrefs.saveSettings();
+			File.saveContent(lime.system.System.applicationStorageDirectory + 'storagetype.txt', ClientPrefs.storageType);
+			//ClientPrefs.saveSettings();
 			StorageUtil.initExternalStorageDirectory();
 		}
 		#end

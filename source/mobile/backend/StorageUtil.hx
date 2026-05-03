@@ -58,7 +58,7 @@ class StorageUtil
 		var daPath:String = '';
 		#if android
 		if (!FileSystem.exists(rootDir + 'storagetype.txt'))
-			File.saveContent(rootDir + 'storagetype.txt', ClientPrefs.data.storageType);
+			File.saveContent(rootDir + 'storagetype.txt', ClientPrefs.storageType);
 
 		var curStorageType:String = File.getContent(rootDir + 'storagetype.txt');
 
@@ -94,7 +94,7 @@ class StorageUtil
 		}
 		catch (e:Dynamic)
 		{
-			CoolUtil.showPopUp('Please create directory to\n${StorageUtil.getStorageDirectory()}\nPress OK to close the game', "Error!");
+			CoolUtil.doPopUp('Please create directory to\n${StorageUtil.getStorageDirectory()}\nPress OK to close the game', "Error!");
 			lime.system.System.exit(1);
 		}
 
@@ -105,7 +105,7 @@ class StorageUtil
 		}
 		catch (e:Dynamic)
 		{
-			CoolUtil.showPopUp('Please create directory to\n${StorageUtil.getExternalStorageDirectory()}\nPress OK to close the game', "Error!");
+			CoolUtil.doPopUp('Please create directory to\n${StorageUtil.getExternalStorageDirectory()}\nPress OK to close the game', "Error!");
 			lime.system.System.exit(1);
 		}
 		#end

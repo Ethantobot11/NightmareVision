@@ -31,7 +31,6 @@ class ClientPrefs
 	
 	public static var hitboxPos:Bool = false;
     public static var hitboxHint:Bool = true;
-	public static var storageType:String = "EXTERNAL_DATA";
 	// og value public static var controlsAlpha:Float = FlxG.onMobile ? 0.6 : 0;
 	public static var controlsAlpha:Float = 0.6;
 	public static var hitboxType:String = "Gradient";
