@@ -12,7 +12,7 @@ import flixel.input.keyboard.FlxKey;
 
 import funkin.backend.DebugDisplay;
 import mobile.MobileConfig.ButtonsModes;
-
+import mobile.backend.StorageUtil;
 #if android
 import android.content.Context;
 import android.os.Build;

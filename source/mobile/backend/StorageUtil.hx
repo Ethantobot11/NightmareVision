@@ -111,17 +111,6 @@ class StorageUtil
 		#end
 		return daPath;
 	}
-    
-	public static function getExternalStorageDirectory():String
-	{
-		#if android
-		return currentExternalStorageDirectory;
-		#elseif ios
-		return LimeSystem.documentsDirectory;
-		#else
-		return Sys.getCwd();
-		#end
-	}
 
 	public static function requestPermissions():Void
 	{
@@ -184,6 +173,17 @@ class StorageUtil
 		return daPath;
 	}
 	#end
+
+    public static function getExternalStorageDirectory():String
+	{
+		#if android
+		return currentExternalStorageDirectory;
+		#elseif ios
+		return LimeSystem.documentsDirectory;
+		#else
+		return Sys.getCwd();
+		#end
+	}
 
 	public static function saveContent(fileName:String, fileData:String, ?alert:Bool = true):Void
 	{
