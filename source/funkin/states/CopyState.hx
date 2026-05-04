@@ -23,7 +23,7 @@
 package funkin.states;
 
 #if COPYSTATE_ALLOWED
-import states.TitleState;
+import funkin.states.TitleState;
 import lime.utils.Assets as LimeAssets;
 import openfl.utils.Assets as OpenFLAssets;
 import openfl.utils.ByteArray;
@@ -66,7 +66,7 @@ class CopyState extends MusicBeatState
 			return;
 		}
 
-		CoolUtil.showPopUp("Seems like you have some missing files that are necessary to run the game\nPress OK to begin the copy process", "Notice!");
+		CoolUtil.doPopUp("Seems like you have some missing files that are necessary to run the game\nPress OK to begin the copy process", "Notice!");
 
 		shouldCopy = true;
 
@@ -111,7 +111,7 @@ class CopyState extends MusicBeatState
 			{
 				if (failedFiles.length > 0)
 				{
-					CoolUtil.showPopUp(failedFiles.join('\n'), 'Failed To Copy ${failedFiles.length} File.');
+					CoolUtil.doPopUp(failedFiles.join('\n'), 'Failed To Copy ${failedFiles.length} File.');
 					final folder:String = #if android StorageUtil.getExternalStorageDirectory() + #else Sys.getCwd() + #end 'logs/';
 					if (!FileSystem.exists(folder))
 						FileSystem.createDirectory(folder);
@@ -153,7 +153,7 @@ class CopyState extends MusicBeatState
 					{
 						var path:String = '';
 						#if android
-						if (file.startsWith('mods/'))
+						if (file.startsWith('content/'))
 							path = StorageUtil.getExternalStorageDirectory() + file;
 						else
 						#end
@@ -180,7 +180,7 @@ class CopyState extends MusicBeatState
 		var fileName = Path.withoutDirectory(file);
 		var directory = Path.directory(file);
 		#if android
-		if (fileName.startsWith('mods/'))
+		if (fileName.startsWith('content/'))
 			directory = StorageUtil.getExternalStorageDirectory() + directory;
 		#end
 		try
@@ -231,12 +231,12 @@ class CopyState extends MusicBeatState
 
 		// removes unwanted assets
 		var assets = locatedFiles.filter(folder -> folder.startsWith('assets/'));
-		var mods = locatedFiles.filter(folder -> folder.startsWith('mods/'));
+		var mods = locatedFiles.filter(folder -> folder.startsWith('content/'));
 		locatedFiles = assets.concat(mods);
 		locatedFiles = locatedFiles.filter(file -> !FileSystem.exists(file));
 		#if android
 		for (file in locatedFiles)
-			if (file.startsWith('mods/'))
+			if (file.startsWith('content/'))
 				locatedFiles = locatedFiles.filter(file -> !FileSystem.exists(StorageUtil.getExternalStorageDirectory() + file));
 		#end
 
