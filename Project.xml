@@ -162,6 +162,8 @@
     <!--For haxe 4.3.0 and newer disables warnings-->
     <haxedef name="no-deprecation-warnings"/>
 
+    <include name="source/external/memory/build.xml" />
+
     <!-- <haxedef name="FLX_NO_PITCH" /> -->
 
     <!--Enable the Flixel core recording system-->

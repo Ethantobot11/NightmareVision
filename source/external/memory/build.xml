@@ -1,5 +1,5 @@
 <xml>
-    <files id='haxe'>
-        <compilerflag value="-I${THIS_DIR}" /> 
-    </files>
+	<files id='haxe'>
+		<compilervalue name="-I" value="${this_dir}" />
+	</files>
 </xml>

@@ -37,8 +37,6 @@ jobs:
           haxelib install hxpkg --quiet
           haxelib install compiletime --quiet
           haxelib run hxpkg install
-          haxelib remove lime
-          haxelib git lime https://github.com/Ethantobot11/lime master --quiet
 
       - name: Configure Android
         run: |
@@ -75,8 +73,6 @@ jobs:
           haxelib install hxpkg --quiet
           haxelib install compiletime --quiet
           haxelib run hxpkg install --quiet
-          haxelib remove lime
-          haxelib git lime https://github.com/Ethantobot11/lime master --quiet
 
       - name: Compile iOS
         run: haxelib run lime build ios -nosign -D ${{ inputs.buildFlags || '' }}
