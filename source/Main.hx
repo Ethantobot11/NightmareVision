@@ -13,6 +13,7 @@ import flixel.input.keyboard.FlxKey;
 import funkin.backend.DebugDisplay;
 import mobile.MobileConfig.ButtonsModes;
 import mobile.backend.StorageUtil;
+import funkin.states.CopyState;
 #if android
 import android.content.Context;
 import android.os.Build;
@@ -82,7 +83,7 @@ class Main extends Sprite
 		ClientPrefs.loadDefaultKeys();
 		ClientPrefs.tryBindingSave('funkin');
 		
-		addChild(new funkin.backend.FunkinGame(startMeta.width, startMeta.height, Init, startMeta.fps, startMeta.fps, true, startMeta.startFullScreen));
+		addChild(new funkin.backend.FunkinGame(startMeta.width, startMeta.height, #if COPYSTATE_ALLOWED !CopyState.checkExistingFiles() ? CopyState : #end Init, startMeta.fps, startMeta.fps, true, startMeta.startFullScreen));
 		
 		// prevent accept button when alt+enter is pressed
 		FlxG.stage.addEventListener(openfl.events.KeyboardEvent.KEY_DOWN, (e) -> {

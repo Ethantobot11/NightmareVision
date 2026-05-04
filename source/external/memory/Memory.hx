@@ -7,7 +7,7 @@ package external.memory;
  * @author Leather128 (Haxe Bindings) - David Robert Nadeau (Original C Header)
  * even if the author is above this, thank you Leather128 for the Haxe Bindings!
  */
-@:buildXml('<include name="${PRJ_DIR}/source/external/memory/build.xml" />')
+@:buildXml('<include name="${this_dir}build.xml" />')
 @:include("Memory.h")
 extern class Memory
 {
