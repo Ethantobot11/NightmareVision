@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package states;
+package funkin.states;
 
 #if COPYSTATE_ALLOWED
 import states.TitleState;

@@ -40,6 +40,7 @@
     <define name="MODS_ALLOWED" if="desktop || mobile" />
     <define name="VIDEOS_ALLOWED" if="cpp" />
     <define name="DISCORD_ALLOWED" if="cpp"/>
+    <define name="COPYSTATE_ALLOWED" if="mobile" />
 
     <!-- _____________________________ Path Settings ____________________________ -->
 
