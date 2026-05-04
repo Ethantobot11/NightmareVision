@@ -257,4 +257,8 @@ class CoolUtil
 			FlxG.sound.music.fadeTween = null;
 		}
 	}
+	public static function getCPUThreadsCount():Int
+    {
+        return 1;
+	}
 }
