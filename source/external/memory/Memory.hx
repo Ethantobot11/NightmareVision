@@ -12,7 +12,7 @@ package external.memory;
 #elseif android
 @:buildXml('<include name="../../../../source/external/memory/build.xml" />')
 #elseif ios
-@:buildXml('<include name="../../../../source/external/memory/build.xml" />')
+@:buildXml('<include name="../../../../../../source/external/memory/build.xml" />')
 #end
 @:include("Memory.h")
 extern class Memory
