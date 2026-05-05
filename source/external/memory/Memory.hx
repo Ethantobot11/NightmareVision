@@ -12,7 +12,7 @@ package external.memory;
 #elseif android
 @:buildXml('<include name="../../../../source/external/memory/build.xml" />')
 #elseif ios
-@:buildXml('<include name="../../../../source/external/memory/build.xml" />')
+@:buildXml('<include name="../../../source/external/memory/build.xml" />')
 #end
 @:include("Memory.h")
 extern class Memory
@@ -22,6 +22,6 @@ extern class Memory
 	 * in bytes, or zero if the value cannot be determined on this OS.
 	 */
 	@:native("getCurrentRSS")
-	public static function getCurrentUsage():cpp.SizeT;
+	public static function getCurrentUsage():Float;
 }
 #end

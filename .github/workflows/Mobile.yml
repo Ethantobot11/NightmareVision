@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: NightmareVision-Android
-          path: export/release/android/bin/app/build/outputs/apk/debug/*.apk
+          path: export/release/android/bin/app/build/outputs/apk/release/*.apk
 
   iOS:
     runs-on: macos-latest

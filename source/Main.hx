@@ -77,7 +77,7 @@ class Main extends Sprite
 		
 		initHaxeUI();
 		
-		WindowUtil.resetWindow();
+		#if desktop WindowUtil.resetWindow(); #end
 		
 		// load save data before creating FlxGame
 		ClientPrefs.loadDefaultKeys();
@@ -92,7 +92,7 @@ class Main extends Sprite
 		
 		DebugDisplay.init();
 		
-		FlxG.signals.gameResized.add(onResize);
+		#if desktop FlxG.signals.gameResized.add(onResize); #end
 		
 		#if DISABLE_TRACES
 		haxe.Log.trace = (v:Dynamic, ?infos:haxe.PosInfos) -> {}
