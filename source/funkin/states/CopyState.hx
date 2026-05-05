@@ -23,7 +23,7 @@
 package funkin.states;
 
 #if COPYSTATE_ALLOWED
-import funkin.states.TitleState;
+import Init;
 import lime.utils.Assets as LimeAssets;
 import openfl.utils.Assets as OpenFLAssets;
 import openfl.utils.ByteArray;
