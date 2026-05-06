@@ -103,7 +103,7 @@ jobs:
       - name: Download Android Build
         uses: actions/download-artifact@main
         with:
-           name: androidBuild
+           name: NightmareVision-Android
            path: /home/runner
 
       - name: Move Android File
@@ -112,7 +112,7 @@ jobs:
       - name: Download iOS Build
         uses: actions/download-artifact@main
         with:
-           name: iOSBuild
+           name: NightmareVision-iOS
            path: ${{ github.workspace }}
 
       - name: Move iOS File
