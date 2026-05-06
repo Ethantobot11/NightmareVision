@@ -7,6 +7,8 @@ on:
       buildFlags:
         required: false
         type: string
+env:
+  PROJECT_NAME: NightmareVision
 
 jobs:
   Android:
@@ -70,7 +72,7 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null --quiet
-          haxelib install hxpkg --quiet
+          haxelib install hxpkg
           haxelib install compiletime --quiet
           haxelib run hxpkg install --quiet
 
@@ -92,3 +94,36 @@ jobs:
         with:
           name: NightmareVision-iOS
           path: export/release/ios/build/Release-iphoneos/*.ipa
+
+  Releaser:
+    needs: [Android, iOS]
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Download Android Build
+        uses: actions/download-artifact@main
+        with:
+           name: androidBuild
+           path: /home/runner
+
+      - name: Move Android File
+        run: mv /home/runner/${{ env.PROJECT_NAME }}-release.apk /home/runner/${{ env.PROJECT_NAME }}-Android.apk
+
+      - name: Download iOS Build
+        uses: actions/download-artifact@main
+        with:
+           name: iOSBuild
+           path: ${{ github.workspace }}
+
+      - name: Move iOS File
+        run: mv ${{ github.workspace }}/${{ env.PROJECT_NAME }}.ipa /home/runner/${{ env.PROJECT_NAME }}-iOS.ipa
+
+      - name: Publish The Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "TEST 0.1"
+          tag_name: "0.1"
+          make_latest: true
+          files: |
+            /home/runner/*.apk
+            /home/runner/*.ipa
