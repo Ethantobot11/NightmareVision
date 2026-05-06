@@ -80,12 +80,12 @@ jobs:
       - name: Make IPA
         run: |
           brew install ldid
-          cd export/release/ios/build/Release-iphoneos/VSImpostor.app
-          ldid -S../../../VSImpostor/VSImpostor.entitlements VSImpostor
+          cd export/release/ios/build/Release-iphoneos/NightmareVision.app
+          ldid -S../../../NightmareVision/NightmareVision.entitlements NightmareVision
           cd ..
           mkdir Payload
-          mv VSImpostor.app Payload
-          zip -r VSImpostor.ipa Payload
+          mv NightmareVision.app Payload
+          zip -r NightmareVision.ipa Payload
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
