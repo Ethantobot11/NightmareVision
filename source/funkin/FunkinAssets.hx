@@ -111,11 +111,12 @@ class FunkinAssets
 	{
 		var exists:Bool = false;
 		
-		#if (MODS_ALLOWED || ASSET_REDIRECT)
-		if (FileSystem.exists(path)) exists = true;
-		else
-		#end
-		if (Assets.exists(path, type)) exists = true;
+		if (FileSystem.exists(path) || Assets.exists(path, type)) return true;
+
+        #if (android || ios)
+        var storagePath:String = mobile.backend.StorageUtil.getExternalStorageDirectory() + path;
+        if (FileSystem.exists(storagePath)) return true;
+        #end
 		
 		return exists;
 	}
@@ -126,15 +127,29 @@ class FunkinAssets
 	 * if it could not be found, an empty array will be returned.
 	 */
 	public static function readDirectory(directory:String):Array<String>
-	{
-		#if (MODS_ALLOWED || ASSET_REDIRECT)
-		return FileSystem.exists(directory) ? FileSystem.readDirectory(directory) : []; // doing a check because i want this to maintain parity with ther assets variation
-		#else
-		if (directory.trim().length == 0) return [];
-		var dir = Assets.list().filter(string -> string.contains(directory));
-		return dir.map(string -> string.replace(directory, '').replace('/', ''));
-		#end
-	}
+    {
+    var list:Array<String> = [];
+    
+    // Check internal first
+    #if !(MODS_ALLOWED || ASSET_REDIRECT)
+    if (directory.trim().length != 0) {
+        var dir = Assets.list().filter(string -> string.contains(directory));
+        list = dir.map(string -> string.replace(directory, '').replace('/', ''));
+    }
+    #end
+
+    // Check Mobile Storage and merge the results
+    #if (android || ios)
+    var storageDir:String = mobile.backend.StorageUtil.getExternalStorageDirectory() + directory;
+    if (FileSystem.exists(storageDir)) {
+        for (file in FileSystem.readDirectory(storageDir)) {
+            if (!list.contains(file)) list.push(file);
+        }
+    }
+    #end
+
+    return list;
+    }
 	
 	public static function isDirectory(directory:String):Bool
 	{

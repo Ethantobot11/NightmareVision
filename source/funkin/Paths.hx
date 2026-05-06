@@ -56,7 +56,15 @@ class Paths
 	 */
 	public static function getPath(file:String, ?parentFolder:String, checkMods:Bool = false):String
 	{
-		if (parentFolder != null) file = '$parentFolder/$file';
+		if (parentFolder == "mobile") 
+        {
+            return 'mobile/$file'; 
+        }
+
+        if (parentFolder != null) 
+        {
+            file = '$parentFolder/$file';
+        }
 		
 		#if MODS_ALLOWED
 		if (checkMods)
@@ -266,14 +274,78 @@ class Paths
 		
 		return FunkinAssets.exists(key) ? FunkinAssets.getContent(key) : '';
 	}
+
+    #if (android || ios)
+	static function findFile(key:String):String {
+		var targetParts:Array<String> = key.replace('\\', '/').split('/');
+		if (targetParts.length == 0) return null;
+
+		var baseDir:String = targetParts.shift();
+		var searchDirs:Array<String> = [
+			mods(Mods.currentModDirectory + '/' + baseDir),
+			mods(baseDir)
+		];
+
+		for (part in targetParts) {
+			if (part == '') continue;
+
+			var nextDir:String = findNodeInDirs(searchDirs, part);
+			if (nextDir == null) {
+				return null;
+			}
+
+			searchDirs = [nextDir];
+		}
+
+		return searchDirs[0];
+	}
+
+	static function findNodeInDirs(dirs:Array<String>, key:String):String {
+		for (dir in dirs) {
+			var node:String = findNode(dir, key);
+			if (node != null) {
+				return dir + '/' + node;
+			}
+		}
+		return null;
+	}
+
+	static function findNode(dir:String, key:String):String {
+		try {
+			var allFiles:Array<String> = Paths.readDirectory(dir);
+			var fileMap:Map<String, String> = new Map();
+
+			for (file in allFiles) {
+				fileMap.set(file.toLowerCase(), file);
+			}
+
+			return fileMap.get(key.toLowerCase());
+		} catch (e:Dynamic) {
+			return null;
+		}
+	}
+	#end
 	
 	/**
 	 * Convenience function to check if a file exists. handles getPath for you
 	 */
 	public static inline function fileExists(key:String, ?parentFolder:String, checkMods:Bool = true):Bool
-	{
-		return FunkinAssets.exists(getPath(key, parentFolder, checkMods));
-	}
+    {
+    var path:String = getPath(key, parentFolder, checkMods);
+    
+    // 1. Check internal assets
+    if (FunkinAssets.exists(path))
+        return true;
+
+    // 2. The Case-Insensitive Check for Mobile/Linux
+    #if (android || ios)
+    var caseCorrectedPath:String = findFile(mobile.backend.StorageUtil.getExternalStorageDirectory() + path);
+    if (caseCorrectedPath != null && FileSystem.exists(caseCorrectedPath))
+        return true;
+    #end
+
+    return false;
+    }
 	
 	public static inline function getMultiAtlas(keys:Array<String>, ?parentFolder:String, allowGPU:Bool = true, checkMods:Bool = true):FlxAtlasFrames // from psych
 	{
@@ -479,4 +551,24 @@ class Paths
 		return mods(key);
 	}
 	#end
+    public static function readDirectory(directory:String):Array<String>
+	{
+		#if MODS_ALLOWED
+		return FileSystem.readDirectory(directory);
+		#else
+		var dirs:Array<String> = [];
+		for(dir in Assets.list().filter(folder -> folder.startsWith(directory)))
+		{
+			@:privateAccess
+			for(library in lime.utils.Assets.libraries.keys())
+			{
+				if(library != 'default' && Assets.exists('$library:$dir') && (!dirs.contains('$library:$dir') || !dirs.contains(dir)))
+					dirs.push('$library:$dir');
+				else if(Assets.exists(dir) && !dirs.contains(dir))
+					dirs.push(dir);
+			}
+		}
+		return dirs.map(dir -> dir.substr(dir.lastIndexOf("/") + 1));
+		#end
+	}
 }
