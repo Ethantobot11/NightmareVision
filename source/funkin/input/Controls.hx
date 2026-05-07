@@ -9,6 +9,11 @@ import flixel.input.actions.FlxActionSet;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
+import mobile.MobilePad;
+import mobile.JoyStick;
+import mobile.Hitbox;
+import funkin.data.ClientPrefs;
+import funkin.states.PlayState;
 
 // at some point i do wanna rework this to be simpler and easier to work with
 
@@ -90,6 +95,9 @@ enum KeyboardScheme
  */
 class Controls extends FlxActionSet
 {
+    public var requestedInstance(get, default):Dynamic;
+    public var requestedHitbox(get, default):FunkinHitbox; // for PlayState and EditorPlayState
+    public var mobileControls(get, never):Bool;
 	public static var instance:Controls;
 	
 	public static function init()
@@ -103,12 +111,15 @@ class Controls extends FlxActionSet
 		FlxG.gamepads.deviceDisconnected.add(gamepadDisconnected);
 	}
 
-    public static var mobileBinds:Map<String, Array<String>> = [
-		'up'			=> ['buttonUp'],
-		'left'			=> ['buttonLeft'],
-		'down'			=> ['buttonDown'],
-		'right'			=> ['buttonRight']
-	];
+    public var mobileBinds:Map<String, Array<String>> = [
+    "up" => ["UP"],
+    "down" => ["DOWN"],
+    "left" => ["LEFT"],
+    "right" => ["RIGHT"],
+    "accept" => ["A", "SPACE"],
+    "back" => ["B", "ESCAPE"],
+    "pause" => ["P", "ENTER"]
+    ];
 	
 	static function gamepadConnected(gamepad:FlxGamepad)
 	{
@@ -642,6 +653,96 @@ class Controls extends FlxActionSet
 			case Gamepad(id): isGamepad(input, id);
 		}
 	}
+
+    public function justPressed(keyName:String) {
+		return mobilePadJustPressed(mobileBinds[keyName]) || joyStickJustPressed(keyName);
+	}
+	public function pressed(keyName:String) {
+		return mobilePadPressed(mobileBinds[keyName]) || joyStickPressed(keyName);
+	}
+	public function released(keyName:String) {
+		return mobilePadJustReleased(mobileBinds[keyName]) || joyStickJustReleased(keyName);
+	}
+	private function joyStickPressed(key:String):Bool
+	{
+		if (key != null && requestedInstance.joyStick != null)
+			if (requestedInstance.joyStick.joyStickPressed(key) == true)
+				return true;
+		return false;
+	}
+	private function joyStickJustPressed(key:String):Bool
+	{
+		if (key != null && requestedInstance.joyStick != null)
+			if (requestedInstance.joyStick.joyStickJustPressed(key) == true)
+				return true;
+		return false;
+	}
+	private function joyStickJustReleased(key:String):Bool
+	{
+		if (key != null && requestedInstance.joyStick != null)
+			if (requestedInstance.joyStick.joyStickJustReleased(key) == true)
+				return true;
+		return false;
+	}
+	private function mobilePadPressed(keys:Array<String>):Bool {
+    var instance = requestedInstance;
+    if (keys != null && instance != null && Reflect.hasField(instance, "mobilePad")) {
+        var pad = Reflect.field(instance, "mobilePad");
+        if (pad != null && pad.buttonPressed(keys)) return true;
+    }
+    return false;
+    }
+	private function mobilePadJustPressed(keys:Array<String>):Bool
+	{
+		if (keys != null && requestedInstance.mobilePad != null)
+			if (requestedInstance.mobilePad.buttonJustPressed(keys) == true)
+				return true;
+		return false;
+	}
+	private function mobilePadJustReleased(keys:Array<String>):Bool
+	{
+		if (keys != null && requestedInstance.mobilePad != null)
+			if (requestedInstance.mobilePad.buttonJustReleased(keys) == true)
+				return true;
+
+		return false;
+	}
+    private function hitboxPressed(keys:Array<String>):Bool
+	{
+		if (keys != null && requestedHitbox != null)
+			if (requestedHitbox.pressed(keys) == true)
+				return true;
+
+		return false;
+	}
+
+	private function hitboxJustPressed(keys:Array<String>):Bool
+	{
+		if (keys != null && requestedHitbox != null)
+			if (requestedHitbox.justPressed(keys) == true)
+				return true;
+
+		return false;
+	}
+
+	private function hitboxJustReleased(keys:Array<String>):Bool
+	{
+		if (keys != null && requestedHitbox != null)
+			if (requestedHitbox.justReleased(keys) == true)
+				return true;
+
+		return false;
+	}
+    @:noCompletion
+	private function get_requestedHitbox():FunkinHitbox
+	{
+		return requestedInstance.mobileManager.hitbox;
+	}
+    @:noCompletion
+	private function get_requestedInstance():Dynamic {
+    if (Std.isOfType(FlxG.state, PlayState)) return PlayState.instance;
+    return FlxG.state; // Fallback to the current active state
+    }
 	
 	inline static function isGamepad(input:FlxActionInput, deviceID:Int)
 	{
@@ -651,6 +752,13 @@ class Controls extends FlxActionSet
     public function setMobileManager(manager:MobileControlManager) {
         this.mobileControls = manager;
     }
+
+    @:noCompletion
+	private function get_mobileControls():Bool
+	{
+		if (ClientPrefs.data.controlsAlpha >= 0.1)
+			return true;
+	}
 
     private function checkAction(action:FlxActionDigital, mobileButton:String, ?state:String = "pressed"):Bool {
     // 1. Check Keyboard/Gamepad first
