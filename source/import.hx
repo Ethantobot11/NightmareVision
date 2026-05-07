@@ -33,7 +33,6 @@ import mobile.objects.FunkinHitbox;
 import mobile.objects.FunkinJoyStick;
 import mobile.Util;
 // Others
-import backend.FunkinFileSystem;
 import mobile.ScreenUtil;
 import mobile.MobileConfig;
 import mobile.MobileConfig.ButtonModes;
