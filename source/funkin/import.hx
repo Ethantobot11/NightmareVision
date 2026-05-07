@@ -23,10 +23,7 @@ import mobile.ScreenUtil;
 import mobile.MobileConfig;
 import mobile.MobileConfig.ButtonModes;
 import mobile.MobileButton;
-#if mobile
 import mobile.backend.StorageUtil;
-#end
-import mobile.substates.MobileExtraControl;
 import mobile.MobileControlManager;
 //Android
 #if android

@@ -38,7 +38,6 @@ import mobile.MobileConfig;
 import mobile.MobileConfig.ButtonModes;
 import mobile.MobileButton;
 import mobile.backend.StorageUtil;
-import mobile.substates.MobileExtraControl;
 import mobile.MobileControlManager;
 //Android
 #if android
