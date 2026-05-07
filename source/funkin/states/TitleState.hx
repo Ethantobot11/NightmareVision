@@ -71,6 +71,16 @@ class TitleState extends MusicBeatState
 		if (!initialized)
 		{
 			FunkinSound.playMusic(Paths.music('freakyMenu'), 0);
+            MobileConfig.init(
+            'MobileControls', 
+            'ArkoseLabs/HaxeTale', 
+            'mobile/',
+            [
+                ['MobilePad/DPadModes', DPAD], 
+                ['MobilePad/ActionModes', ACTION], 
+                ['Hitbox/HitboxModes', HITBOX]
+            ]
+        );
 		}
 		
 		Conductor.bpm = 102;

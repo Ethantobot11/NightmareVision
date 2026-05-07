@@ -27,10 +27,20 @@ import funkin.api.DiscordClient;
 import hxvlc.flixel.*;
 #end
 
-import mobile.*;
-import mobile.backend.*;
-import mobile.objects.*;
+// Spesificly Extended Mobile-Controls Library Objects For FNF
+import mobile.objects.FunkinMobilePad;
+import mobile.objects.FunkinHitbox;
+import mobile.objects.FunkinJoyStick;
 import mobile.Util;
+// Others
+import backend.FunkinFileSystem;
+import mobile.ScreenUtil;
+import mobile.MobileConfig;
+import mobile.MobileConfig.ButtonModes;
+import mobile.MobileButton;
+import mobile.backend.StorageUtil;
+import mobile.substates.MobileExtraControl;
+import mobile.MobileControlManager;
 //Android
 #if android
 import android.callback.CallBack as AndroidCallBack;
