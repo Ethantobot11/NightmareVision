@@ -162,7 +162,7 @@ jobs:
           name: NightmareVision-iOS
           path: export/release/ios/build/Release-iphoneos/*.ipa
   Switch:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Windows, switch-build]
     steps:
       - name: Placeholder for Nintendo Switch
         run: |
