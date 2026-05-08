@@ -1,17 +1,11 @@
 package external.memory;
 
 #if cpp
-/**
- * Memory class to properly get accurate memory counts
- * for the program.
- * @author Leather128 (Haxe Bindings) - David Robert Nadeau (Original C Header)
- * even if the author is above this, thank you Leather128 for the Haxe Bindings!
- */
-#if windows
+#if (windows || linux)
 @:buildXml('<include name="../../../../source/external/memory/build.xml" />')
 #elseif android
 @:buildXml('<include name="../../../../source/external/memory/build.xml" />')
-#elseif ios
+#elseif (ios || macos)
 @:buildXml('<include name="../../../source/external/memory/build.xml" />')
 #end
 @:include("Memory.h")
@@ -23,5 +17,14 @@ extern class Memory
 	 */
 	@:native("getCurrentRSS")
 	public static function getCurrentUsage():Float;
+}
+#else
+
+// Fallback class for Mac, Linux, and others so the code doesn't crash
+class Memory 
+{
+	public static function getCurrentUsage():Float {
+		return 0.0;
+	}
 }
 #end

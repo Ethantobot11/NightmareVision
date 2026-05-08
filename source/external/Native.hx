@@ -30,6 +30,7 @@ class Native
 	 */
 	public static function getTaskMemory()
 	{
+		// Only run the memory check if we are on Windows AND using CPP
 		#if cpp
 		return external.memory.Memory.getCurrentUsage();
 		#else
