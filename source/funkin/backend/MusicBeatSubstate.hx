@@ -55,17 +55,12 @@ class MusicBeatSubstate extends FlxSubState
 	public function new()
 	{
 		super();
-		// Initialize the manager for the substate
-	}
-
-    override function create() {
-        mobileManager = new MobileControlManager(this);
+		mobileManager = new MobileControlManager(this);
     
         if (funkin.input.Controls.instance != null) {
             funkin.input.Controls.instance.setMobileManager(mobileManager);
         }
-        super.create();
-    }
+	}
 	
 	private var curSection:Int = 0;
 	private var stepsToDo:Int = 0;

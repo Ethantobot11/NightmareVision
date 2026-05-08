@@ -11,9 +11,12 @@ import flixel.FlxGame;
 import flixel.input.keyboard.FlxKey;
 
 import funkin.backend.DebugDisplay;
+
 import mobile.MobileConfig.ButtonsModes;
 import mobile.backend.StorageUtil;
+
 import funkin.states.CopyState;
+
 #if android
 import android.content.Context;
 import android.os.Build;
@@ -47,30 +50,27 @@ class Main extends Sprite
 	
 	public static function main():Void
 	{
-    MobileConfig.init(
-        'MobileControls', 
-        'ArkoseLabs/HaxeTale', 
-        'mobile/',
-        [
-            ['MobilePad/DPadModes', DPAD], 
-            ['MobilePad/ActionModes', ACTION], 
-            ['Hitbox/HitboxModes', HITBOX]
-        ]
-    );
+		MobileConfig.init('MobileControls', 'ArkoseLabs/HaxeTale', 'mobile/', [
+			['MobilePad/DPadModes', DPAD],
+			['MobilePad/ActionModes', ACTION],
+			['Hitbox/HitboxModes', HITBOX]
+		]);
 		Lib.current.addChild(new Main());
 	}
 	
 	public function new()
 	{
 		super();
-        #if mobile
-        #if android
-        StorageUtil.requestPermissions();
-        StorageUtil.initExternalStorageDirectory();
-        StorageUtil.copySpesificFileFromAssets('assets/mobile/storageModes.txt', StorageUtil.getCustomStoragePath(), true);
-        #end
-        Sys.setCwd(StorageUtil.getExternalStorageDirectory());
-        #end
+		FlxG.mouse.useSystemCursor = true;
+		FlxG.mouse.visible = true;
+		#if mobile
+		#if android
+		StorageUtil.requestPermissions();
+		StorageUtil.initExternalStorageDirectory();
+		StorageUtil.copySpesificFileFromAssets('assets/mobile/storageModes.txt', StorageUtil.getCustomStoragePath(), true);
+		#end
+		Sys.setCwd(StorageUtil.getExternalStorageDirectory());
+		#end
 		#if (CRASH_HANDLER && !debug)
 		funkin.backend.CrashHandler.init();
 		#end
@@ -83,8 +83,9 @@ class Main extends Sprite
 		ClientPrefs.loadDefaultKeys();
 		ClientPrefs.tryBindingSave('funkin');
 		
-		addChild(new funkin.backend.FunkinGame(startMeta.width, startMeta.height, #if COPYSTATE_ALLOWED !CopyState.checkExistingFiles() ? CopyState : #end Init, startMeta.fps, startMeta.fps, true, startMeta.startFullScreen));
-		
+		addChild(new funkin.backend.FunkinGame(startMeta.width, startMeta.height, #if COPYSTATE_ALLOWED !CopyState.checkExistingFiles() ? CopyState : #end Init, startMeta.fps, startMeta.fps, true,
+			startMeta.startFullScreen));
+			
 		// prevent accept button when alt+enter is pressed
 		FlxG.stage.addEventListener(openfl.events.KeyboardEvent.KEY_DOWN, (e) -> {
 			if (e.keyCode == FlxKey.ENTER && e.altKey) e.stopImmediatePropagation();
@@ -97,7 +98,7 @@ class Main extends Sprite
 		#if DISABLE_TRACES
 		haxe.Log.trace = (v:Dynamic, ?infos:haxe.PosInfos) -> {}
 		#end
-        #if android FlxG.android.preventDefaultKeys = [BACK]; #end
+		#if android FlxG.android.preventDefaultKeys = [BACK]; #end
 	}
 	
 	@:access(flixel.FlxCamera)

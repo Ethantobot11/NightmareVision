@@ -103,7 +103,7 @@ class MobileOptionsSubState extends BaseOptionsMenu {
 
 		#if android
 		option = new Option('Storage Type',
-			'Which folder Psych Online should use?',
+			'Which folder Nightmare Engine should use?',
 			'storageType',
 			'string',
 			storageTypes

@@ -105,10 +105,10 @@ class Controls extends FlxActionSet
 	}
 
     public static var mobileBinds:Map<String, Array<String>> = [
-		'up'			=> ['buttonUp'],
-		'left'			=> ['buttonLeft'],
-		'down'			=> ['buttonDown'],
-		'right'			=> ['buttonRight']
+		'up'			=> ['UP'],
+		'left'			=> ['LEFT'],
+		'down'			=> ['DOWN'],
+		'right'			=> ['RIGHT']
 	];
 	
 	static function gamepadConnected(gamepad:FlxGamepad)
@@ -213,32 +213,28 @@ class Controls extends FlxActionSet
     inline function get_NOTE_DOWN_P() return checkAction(_note_downP, "DOWN", "justPressed"); // Changed
 
     public var UI_UP_R(get, never):Bool;
-
-    inline function get_UI_UP_R() return _ui_upR.check();
+    inline function get_UI_UP_R() return checkAction(_ui_upR, "UP", "justReleased");
 
     public var UI_LEFT_R(get, never):Bool;
-
-    inline function get_UI_LEFT_R() return _ui_leftR.check();
+    inline function get_UI_LEFT_R() return checkAction(_ui_leftR, "LEFT", "justReleased");
 
     public var UI_RIGHT_R(get, never):Bool;
-
-    inline function get_UI_RIGHT_R() return _ui_rightR.check();
+    inline function get_UI_RIGHT_R() return checkAction(_ui_rightR, "RIGHT", "justReleased");
 
     public var UI_DOWN_R(get, never):Bool;
-
-    inline function get_UI_DOWN_R() return _ui_downR.check();
+    inline function get_UI_DOWN_R() return checkAction(_ui_downR, "DOWN", "justReleased");
 
     // SYSTEM BUTTONS
     public var ACCEPT(get, never):Bool;
     // Match this to your JSON ("A" or "buttonA")
-    inline function get_ACCEPT() return checkAction(_accept, "buttonA", "justPressed"); 
+    inline function get_ACCEPT() return checkAction(_accept, "A", "justPressed"); 
 
     public var BACK(get, never):Bool;
     // Match this to your JSON ("B" or "buttonB")
-    inline function get_BACK() return checkAction(_back, "buttonB", "justPressed"); 
+    inline function get_BACK() return checkAction(_back, "B", "justPressed"); 
 
     public var PAUSE(get, never):Bool;
-    inline function get_PAUSE() return checkAction(_pause, "buttonP", "justPressed");
+    inline function get_PAUSE() return checkAction(_pause, "P", "justPressed");
 	
 	public var RESET(get, never):Bool;
 	
@@ -250,11 +246,11 @@ class Controls extends FlxActionSet
 	
 	public var NOTE_DODGE_P(get, never):Bool;
 	
-	inline function get_NOTE_DODGE_P() return _note_dodgeP.check();
+	inline function get_NOTE_DODGE_P() return checkAction(_note_dodgeP, "ExtraButton", "justPressed");
 	
 	public var NOTE_DODGE_R(get, never):Bool;
 	
-	inline function get_NOTE_DODGE_R() return _note_dodgeR.check();
+	inline function get_NOTE_DODGE_R() return checkAction(_note_dodgeR, "ExtraButton", "justReleased");
 	
 	public function new(name, scheme = None)
 	{
@@ -654,23 +650,35 @@ class Controls extends FlxActionSet
     }
 
     private function checkAction(action:FlxActionDigital, mobileButton:String, ?state:String = "pressed"):Bool {
-    // 1. Check Keyboard/Gamepad first
-    if (action.check()) return true;
+    // 1. Standard Controls
+    if (action != null && action.check()) return true;
 
-    // 2. Check Mobile Controls if they exist
-    if (mobileControls != null) {
-        // Check Hitbox (Gameplay)
-        // Guard: check if hitbox exists AND the button string is valid
-        if (FlxG.mouse.justPressed && mobileControls.hitbox != null) {
-            var hit = mobileControls.hitbox.getButton(mobileButton);
-            if (hit != null) return Reflect.getProperty(hit, state);
+    // 2. Mobile Manager Bridge
+    if (mobileControls != null && !Std.isOfType(mobileControls, Bool)) {
+        
+        // This assumes your Manager has a reference to the Handler or the Pad
+        // Check both Pad and Hitbox via the Handler logic
+        var handler:Dynamic = null;
+        if (Reflect.hasField(mobileControls, "mobilePad")) handler = Reflect.field(mobileControls, "mobilePad");
+        else if (Reflect.hasField(mobileControls, "hitbox")) handler = Reflect.field(mobileControls, "hitbox");
+
+        if (handler != null) {
+            // Use the specific functions from MobileInputHandler
+            switch (state) {
+                case "justPressed":
+                    if (handler.justPressed(mobileButton)) return true;
+                case "justReleased":
+                    if (handler.justReleased(mobileButton)) return true;
+                default:
+                    if (handler.pressed(mobileButton)) return true;
+            }
         }
         
-        // Check Virtual Pad (Menus/Gameplay)
-        // Guard: check if mobilePad exists AND the button string is valid
-        if (FlxG.mouse.justPressed && mobileControls.mobilePad != null) {
-            var btn = mobileControls.mobilePad.getButton(mobileButton);
-            if (btn != null) return Reflect.getProperty(btn, state);
+        // --- TOUCH MOUSE TEST ---
+        // If on PC, we can still use the overlap check as a backup
+        if (FlxG.mouse.justPressed || FlxG.mouse.pressed) {
+             var btn = handler.trackedButtons.get(mobileButton);
+             if (btn != null && FlxG.mouse.overlaps(btn)) return true;
         }
     }
     return false;

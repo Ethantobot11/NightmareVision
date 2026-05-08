@@ -109,14 +109,15 @@ class MainMenuState extends MusicBeatState
 		add(verionDesc);
 		
 		changeSelection();
-		
-		super.create();
-		
+
         if (mobileManager != null) {
         funkin.input.Controls.instance.setMobileManager(mobileManager);
         }
 		addMobilePad("UP_DOWN", "A_B");
 		addMobilePadCamera();
+		
+		
+		super.create();
 		
 		scriptGroup.call('onCreate', []);
 	}

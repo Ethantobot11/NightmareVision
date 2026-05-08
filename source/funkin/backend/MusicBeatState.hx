@@ -77,14 +77,14 @@ class MusicBeatState extends FlxUIState
 
     public function new() {
         super();
-    }
-
-    override function create() {
         mobileManager = new MobileControlManager(this);
     
         if (funkin.input.Controls.instance != null) {
             funkin.input.Controls.instance.setMobileManager(mobileManager);
         }
+    }
+
+    override function create() {
         super.create();
         if (!FlxTransitionableState.skipNextTransOut) {
             openSubState(Type.createInstance(transitionOutState ?? _defaultTransState, [TransitionStatus.OUT]));

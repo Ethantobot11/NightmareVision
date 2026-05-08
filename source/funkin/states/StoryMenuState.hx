@@ -186,12 +186,13 @@ class StoryMenuState extends MusicBeatState
 		changeWeek();
 		changeDifficulty();
 		
-		super.create();
         if (mobileManager != null) {
         funkin.input.Controls.instance.setMobileManager(mobileManager);
         }
         addMobilePad("FULL", "A_B_X_Y");
         addMobilePadCamera();
+        
+		super.create();
 		scriptGroup.call('onCreatePost', []);
 	}
 	

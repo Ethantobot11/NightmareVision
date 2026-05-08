@@ -842,14 +842,14 @@ class PlayState extends MusicBeatState
 		
 		callHUDFunc(hud -> hud.cachePopUpScore());
 		
-		super.create();
-
-		if (mobileManager != null) {
+        if (mobileManager != null) {
         funkin.input.Controls.instance.setMobileManager(mobileManager);
         }
         addPlayStateHitbox(); 
         addHitboxDeadZone(null, ['buttonP']);
         addMobilePad("NONE", "P");
+        
+		super.create();
 		
 		FunkinAssets.cache.clearUnusedMemory();
 		

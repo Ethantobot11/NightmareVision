@@ -179,12 +179,13 @@ class CreditsState extends MusicBeatState
 		add(descText);
 		
 		changeSelection();
-		super.create();
 
         if (mobileManager != null) {
         funkin.input.Controls.instance.setMobileManager(mobileManager);
         }
         addMobilePad("UP_DOWN", "A_B");
+
+		super.create();
 		
 		scriptGroup.call('onCreate');
 	}
