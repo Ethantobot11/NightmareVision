@@ -31,10 +31,9 @@ class Native
 	public static function getTaskMemory()
 	{
 		// Only run the memory check if we are on Windows AND using CPP
-		#if (!macos && !linux && cpp)
+		#if cpp
 		return external.memory.Memory.getCurrentUsage();
 		#else
-		// Mac, Linux, and Mobile will just return 0 instead of crashing
 		return 0.0;
 		#end
 	}
