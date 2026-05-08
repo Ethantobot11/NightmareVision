@@ -90,7 +90,17 @@ jobs:
         run: haxelib run lime build mac -release -D ${{ inputs.buildFlags || '' }}
       - name: Zip App
         run: |
-          cd export/release/mac/bin
+          # Use -d to check if the directory exists, then zip it
+          # Most Lime versions use 'macos', some use 'mac'
+          if [ -d "export/release/macos/bin" ]; then
+            cd export/release/macos/bin
+          elif [ -d "export/release/mac/bin" ]; then
+            cd export/release/mac/bin
+          else
+            echo "Could not find mac bin directory. Listing files for debug:"
+            ls -R export/release
+            exit 1
+          fi
           zip -r ../../../NightmareVision-macOS.zip .
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
