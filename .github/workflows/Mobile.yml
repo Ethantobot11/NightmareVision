@@ -62,7 +62,6 @@ jobs:
           path: export/release/windows/bin/*.exe
 
       - name: Clear Old Cache
-        if: inputs.doCache == 'YES'
         uses: actions/github-script@v7
         continue-on-error: true
         with:
@@ -82,7 +81,6 @@ jobs:
             }
 
       - name: Save New Cache
-        if: inputs.doCache == 'YES'
         uses: actions/cache/save@v4
         with:
           key: cache-windows-${{ inputs.name }}
@@ -137,7 +135,6 @@ jobs:
           path: export/release/linux/bin/*
 
       - name: Clear Old Cache
-        if: inputs.doCache == 'YES'
         uses: actions/github-script@v7
         continue-on-error: true
         with:
@@ -157,7 +154,6 @@ jobs:
             }
 
       - name: Save New Cache
-        if: inputs.doCache == 'YES'
         uses: actions/cache/save@v4
         with:
           key: cache-linux-${{ inputs.name }}
@@ -213,7 +209,6 @@ jobs:
           path: NightmareVision-macOS.zip
 
       - name: Clear Old Cache
-        if: inputs.doCache == 'YES'
         uses: actions/github-script@v7
         continue-on-error: true
         with:
@@ -233,7 +228,6 @@ jobs:
             }
 
       - name: Save New Cache
-        if: inputs.doCache == 'YES'
         uses: actions/cache/save@v4
         with:
           key: cache-macos-${{ inputs.name }}
@@ -295,7 +289,6 @@ jobs:
           path: export/release/android/bin/app/build/outputs/apk/release/*.apk
 
       - name: Clear Old Cache
-        if: inputs.doCache == 'YES'
         uses: actions/github-script@v7
         continue-on-error: true
         with:
@@ -315,7 +308,6 @@ jobs:
             }
 
       - name: Save New Cache
-        if: inputs.doCache == 'YES'
         uses: actions/cache/save@v4
         with:
           key: cache-android-${{ inputs.name }}
@@ -369,7 +361,6 @@ jobs:
           name: NightmareVision-iOS
           path: export/release/ios/build/Release-iphoneos/*.ipa
       - name: Clear Old Cache
-        if: inputs.doCache == 'YES'
         uses: actions/github-script@v7
         continue-on-error: true
         with:
@@ -388,7 +379,6 @@ jobs:
               }
             }
       - name: Save New Cache
-        if: inputs.doCache == 'YES'
         uses: actions/cache/save@v4
         with:
           key: cache-ios-${{ inputs.name }}
