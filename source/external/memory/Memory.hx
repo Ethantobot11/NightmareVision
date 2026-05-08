@@ -1,16 +1,11 @@
 package external.memory;
 
-// Only allow this class to exist on platforms where we have the C++ header ready
-#if (cpp && (windows || android || ios))
-
-/**
- * Memory class to properly get accurate memory counts
- */
-#if windows
+#if cpp
+#if (windows || linux)
 @:buildXml('<include name="../../../../source/external/memory/build.xml" />')
 #elseif android
 @:buildXml('<include name="../../../../source/external/memory/build.xml" />')
-#elseif ios
+#elseif (ios || macos)
 @:buildXml('<include name="../../../source/external/memory/build.xml" />')
 #end
 @:include("Memory.h")
@@ -23,7 +18,6 @@ extern class Memory
 	@:native("getCurrentRSS")
 	public static function getCurrentUsage():Float;
 }
-
 #else
 
 // Fallback class for Mac, Linux, and others so the code doesn't crash
