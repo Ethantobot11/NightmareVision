@@ -77,11 +77,14 @@ class MusicBeatState extends FlxUIState
 
     public function new() {
         super();
-        // Initialize the mobile manager here
-        mobileManager = new MobileControlManager(this);
     }
 
     override function create() {
+        mobileManager = new MobileControlManager(this);
+    
+        if (funkin.input.Controls.instance != null) {
+            funkin.input.Controls.instance.setMobileManager(mobileManager);
+        }
         super.create();
         if (!FlxTransitionableState.skipNextTransOut) {
             openSubState(Type.createInstance(transitionOutState ?? _defaultTransState, [TransitionStatus.OUT]));
@@ -173,8 +176,9 @@ class MusicBeatState extends FlxUIState
         scriptGroup = FlxDestroyUtil.destroy(scriptGroup);
         
         // Clean up mobile manager to prevent memory leaks
-        if (mobileManager != null) mobileManager.destroy();
-        funkin.input.Controls.instance.setMobileManager(null);
+        if (mobileManager != null) {
+        mobileManager.destroy();
+        }
         super.destroy();
     }
 

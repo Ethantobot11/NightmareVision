@@ -103,7 +103,7 @@ class MainMenuState extends MusicBeatState
 		
 		final verionDesc:FlxText = new FlxText(12, 0, 0, ver, 16);
 		verionDesc.setFormat(Paths.DEFAULT_FONT, 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		verionDesc.borderSize = 1.5;
+		verionDesc.borderSize = 3.5;
 		verionDesc.y = FlxG.height - verionDesc.height - 12;
 		verionDesc.scrollFactor.set();
 		add(verionDesc);

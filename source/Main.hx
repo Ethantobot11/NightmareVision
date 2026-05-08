@@ -47,6 +47,16 @@ class Main extends Sprite
 	
 	public static function main():Void
 	{
+    MobileConfig.init(
+        'MobileControls', 
+        'ArkoseLabs/HaxeTale', 
+        'mobile/',
+        [
+            ['MobilePad/DPadModes', DPAD], 
+            ['MobilePad/ActionModes', ACTION], 
+            ['Hitbox/HitboxModes', HITBOX]
+        ]
+    );
 		Lib.current.addChild(new Main());
 	}
 	
