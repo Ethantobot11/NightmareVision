@@ -46,7 +46,12 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libgl1-mesa-dev libglu1-mesa-dev libalut-dev libasound2-dev libx11-dev libxext-dev libxi-dev libxrandr-dev libxinerama-dev
+          sudo apt-get install -y \
+            libgl1-mesa-dev libglu1-mesa-dev \
+            libalut-dev libasound2-dev \
+            libx11-dev libxext-dev libxi-dev libxrandr-dev libxinerama-dev \
+            libvlc-dev libvlccore-dev \
+            vlc
       - uses: krdlab/setup-haxe@master
         with:
           haxe-version: 4.3.7
