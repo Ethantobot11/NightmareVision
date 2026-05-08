@@ -161,9 +161,18 @@ jobs:
         with:
           name: NightmareVision-iOS
           path: export/release/ios/build/Release-iphoneos/*.ipa
+  Switch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder for Nintendo Switch
+        run: |
+          echo "Nintendo Switch build is currently a placeholder."
+          echo "Waiting for SDK approval from Nintendo Developer Portal."
+      - name: Success Signal
+        run: exit 0
 
   Releaser:
-    needs: [Windows, Linux, macOS, Android, iOS]
+    needs: [Windows, Linux, macOS, Android, iOS, Switch]
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
