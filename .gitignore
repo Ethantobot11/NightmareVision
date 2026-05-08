@@ -6,6 +6,9 @@ content/avas_evil_secrets/*
 .haxelib/*
 hmm.json
 
+#nintendo
+sdk-nintendo/
+
 ### Mac
 .DS_Store
 .icloud
